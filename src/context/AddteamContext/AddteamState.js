@@ -7,16 +7,7 @@ const AddteamState =(props)=>{
   const IntialAddteam =[    ]
   
   const [Addteam, setAddteam] = useState(IntialAddteam)
-  const [SelectedTeam, setSelectedTeam] = useState(IntialAddteam)
-  const [FilteredTeam, setFilteredTeam] = useState(IntialAddteam)
-  const SelectTeams=(Teams)=>{
-    setSelectedTeam(Teams)
-    // console.log(SelectedTeam)
-  }
-  const FilteringTeam=(Teams)=>{
-    setFilteredTeam(Teams)
-    // console.log(SelectedTeam)
-  }
+
   //Fetch all team
       const getTeams = async () => {
         // console.log("this is it")
@@ -81,10 +72,6 @@ const AddteamState =(props)=>{
             addTeam,
             deleteTeam,
             getTeams,
-            SelectedTeam,
-            SelectTeams,
-            FilteringTeam,
-            FilteredTeam
           }}
         >
           {props.children}

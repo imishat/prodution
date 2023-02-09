@@ -13,12 +13,18 @@ export default function Addteam() {
   const m_id = mid.id
   const [filteredData, setFilteredData] = useState([]);
    const context = useContext(AddteamContext)
-   const { Addteam,getTeams,SelectedTeam,FilteringTeam} = context
+   const { Addteam,getTeams} = context
    const context2 = useContext(TallyContext)
-   const {addFilterteam } = context2
+   let cond = false
+   const {addFilterteam ,SelectedTeam,FilteringTeam,SelectTeams,getfilter,FilteredTeam} = context2
    useEffect(() => {
     getTeams()
+   
   }, [])
+   useEffect(() => {
+   
+    getfilter(m_id)
+  }, [m_id])
   useEffect(() => {
     if(SelectedTeam.length > 0) {
       setFilteredData(
@@ -26,14 +32,27 @@ export default function Addteam() {
           return SelectedTeam.includes(team.teamName);
         })
       );
+      console.log(filteredData,"filter")
+      cond = true
       FilteringTeam(filteredData)
-     addFilterteam(m_id,filteredData)
-       console.log(filteredData,"filter")
     }
-  }, [SelectedTeam,Addteam])
+  }, [SelectedTeam])
+  
+  useEffect(() => {
+    
+    addFilterteam(m_id,filteredData)
+    
+  }, [filteredData])
+  
+  
+  const handleSubmit = async () => {
+    console.log(filteredData,"value")
+ 
+  };
+  
   return (
     <>
-    <AddTeamB/>
+    <AddTeamB  handleSubmit={handleSubmit} />
     <div style={{marginLeft:"57px",marginTop:"75px"}}>
     <div className="d-flex flex-wrap">
         {filteredData.map((teamData, index) => {

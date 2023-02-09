@@ -5,7 +5,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useState } from 'react';
 import SelectTeam from './SelectTeam';
 
-export default function AddTeamB() {
+export default function AddTeamB(props) {
     let divstyle = {
         padding: '10px',
         position: "absolute",
@@ -25,7 +25,7 @@ export default function AddTeamB() {
       openPopup ={openPopup}
       setOpenPopup={setOpenPopup}
       >
-    <SelectTeam/>
+    <SelectTeam ha handleSubmit={props.handleSubmit} />
     </Popup>
         </>
   )

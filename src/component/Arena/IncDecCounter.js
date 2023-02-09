@@ -26,7 +26,7 @@ export default function IncDecCounter(props) {
   }
 
   return (
-    <div
+    <diva
       style={{
         padding:"10px 10px",
         display: "flex",
@@ -36,6 +36,6 @@ export default function IncDecCounter(props) {
       <button onClick={decrement}>-</button>
       <p style={{ margin: "5px 5px" }}>{count}</p>
       <button onClick={increment}>+</button>
-    </div>
+    </diva>
   );
 }

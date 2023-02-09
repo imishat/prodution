@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 const FilteredTeamModel = require("../models/FilteredTeamModel")
 
-router.post('/storefilterteam',(req,res)=>{
-    const FilteredTeam = FilteredTeamModel(req.body)
-    FilteredTeam.save()
-    res.send(FilteredTeam)
+router.post('/storefilterteam',async (req,res)=>{
+  const matchId = req.body.matchId;
+  const value = req.body.value;
+
+  const result = await FilteredTeamModel.updateOne({ matchId: matchId }, { value: value }, { upsert: true });
+  res.send(result);
     }
   )
 

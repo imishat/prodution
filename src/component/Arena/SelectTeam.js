@@ -1,10 +1,13 @@
 import React from 'react'
 import { useContext,useEffect,useState } from 'react'
 import AddteamContext from '../../context/AddteamContext/AddteamContext'
+import TallyContext from '../../context/TallyContext/TallyContext'
 import TeamList from './TeamList'
-export default function SelectTeam() {
+export default function SelectTeam(props) {
     const context = useContext(AddteamContext)
-    const { Addteam,getTeams,SelectTeams,SelectedTeam} = context
+    const context2 = useContext(TallyContext)
+    const { Addteam,getTeams} = context
+    const { SelectTeams,SelectedTeam,} = context2
     useEffect(() => {
      getTeams()
    }, [])
@@ -21,6 +24,7 @@ export default function SelectTeam() {
    const onClick=()=>{
     SelectTeams(Teams)
    console.log(SelectedTeam)
+   props.handleSubmit()
    }
   return (
     <div style={{marginLeft:"80px",marginTop:"20px"}}>

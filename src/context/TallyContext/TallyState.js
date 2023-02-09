@@ -6,6 +6,32 @@ const TallyState =(props)=>{
   const port = "http://localhost:5000";
   const [teams, setTeams] = useState([]);
   const [totalkill, settotalkill] = useState([])
+  const [SelectedTeam, setSelectedTeam] = useState([])
+  const [FilteredTeam, setFilteredTeam] = useState([])
+  const SelectTeams=(Teams)=>{
+    setSelectedTeam(Teams)
+    // console.log(SelectedTeam)
+  }
+  const getfilter = async (id) => {
+    // console.log("this is it")
+
+    const response = await fetch(`${port}/api/filteredteam/fetchFilterteam/${id}`, {
+      method: "GET", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+    console.log("back",json)
+    setFilteredTeam(json)
+     console.log("pro",FilteredTeam)
+    
+    
+  };
+  const FilteringTeam= (Teams)=>{
+    //  setFilteredTeam(Teams)
+    // console.log(SelectedTeam)
+  }
   const DeadState = (team, player1Status, player2Status, player3Status, player4Status) => {
     let index = teams.indexOf(teams.filter(t => t.team === team)[0]);
     if (index !== -1) {
@@ -21,7 +47,7 @@ const TallyState =(props)=>{
   };
   const addFilterteam = async (matchId,value) => {
       // console.log("this is it")
-    console.log(value,"value")
+    // console.log(value,"value")
     const response = await fetch(`${port}/api/filteredteam/storefilterteam`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -51,6 +77,11 @@ const TallyState =(props)=>{
            KillState,
            totalkill,
            addFilterteam,
+           SelectedTeam,
+           SelectTeams,
+           FilteringTeam,
+           FilteredTeam,
+           getfilter
 
           }}
         >
