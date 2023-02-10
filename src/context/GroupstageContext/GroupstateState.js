@@ -18,6 +18,7 @@ const GroupstageState =(props)=>{
         });
         const json = await response.json();
         setGroups(json)
+        console.log("group",Groups)
         
       };
     const addGroup = async (tournament_id,title, total_matches) => {

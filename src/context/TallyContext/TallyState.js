@@ -1,6 +1,7 @@
 import React from "react";
 import TallyContext from "./TallyContext";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const TallyState =(props)=>{
   const port = "http://localhost:5000";
@@ -8,10 +9,16 @@ const TallyState =(props)=>{
   const [totalkill, settotalkill] = useState([])
   const [SelectedTeam, setSelectedTeam] = useState([])
   const [FilteredTeam, setFilteredTeam] = useState([])
+  // const [FilteredTeams, setFilteredTeams] = useState([])
+  
   const SelectTeams=(Teams)=>{
     setSelectedTeam(Teams)
     // console.log(SelectedTeam)
   }
+
+   
+  
+  
   const getfilter = async (id) => {
     // console.log("this is it")
 
@@ -22,9 +29,9 @@ const TallyState =(props)=>{
       },
     });
     const json = await response.json();
-    console.log("back",json)
-    setFilteredTeam(json)
-     console.log("pro",FilteredTeam)
+    console.log("hi " ,json)
+    setFilteredTeam(json);
+    console.log("you " ,FilteredTeam)
     
     
   };

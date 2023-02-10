@@ -11,42 +11,44 @@ import { useState } from 'react';
 export default function Addteam() {
   const mid = useParams()
   const m_id = mid.id
-  const [filteredData, setFilteredData] = useState([]);
-   const context = useContext(AddteamContext)
-   const { Addteam,getTeams} = context
-   const context2 = useContext(TallyContext)
-   let cond = false
-   const {addFilterteam ,SelectedTeam,FilteringTeam,SelectTeams,getfilter,FilteredTeam} = context2
+  const [filteredData, setFilteredData] = useState(JSON.parse(localStorage.getItem(`${m_id}-filteredData`)) || []);  
+  const context = useContext(AddteamContext)
+  const { Addteam,getTeams} = context
+  const context2 = useContext(TallyContext)
+  let cond = false
+  const {addFilterteam ,SelectedTeam,FilteringTeam,SelectTeams,getfilter,FilteredTeam} = context2
+  const value = FilteredTeam.value
    useEffect(() => {
+    
     getTeams()
-   
   }, [])
-   useEffect(() => {
-   
+  useEffect(() => {
     getfilter(m_id)
-  }, [m_id])
+    // console.log(value,"final")
+  }, [m_id,filteredData])
   useEffect(() => {
     if(SelectedTeam.length > 0) {
       setFilteredData(
         Addteam.filter(team => {
           return SelectedTeam.includes(team.teamName);
         })
-      );
-      console.log(filteredData,"filter")
-      cond = true
-      FilteringTeam(filteredData)
-    }
-  }, [SelectedTeam])
-  
-  useEffect(() => {
+        );
+        console.log(FilteredTeam,"filter")
+        cond = true
+        FilteringTeam(filteredData)
+      }
+    }, [SelectedTeam])
     
-    addFilterteam(m_id,filteredData)
+    useEffect(() => {
+      localStorage.setItem(`${m_id}-filteredData`, JSON.stringify(filteredData))
+      addFilterteam(m_id,filteredData)
+      console.log(filteredData,"filteredData")
     
   }, [filteredData])
   
   
   const handleSubmit = async () => {
-    console.log(filteredData,"value")
+    // console.log(filteredData,"value")
  
   };
   
@@ -55,7 +57,7 @@ export default function Addteam() {
     <AddTeamB  handleSubmit={handleSubmit} />
     <div style={{marginLeft:"57px",marginTop:"75px"}}>
     <div className="d-flex flex-wrap">
-        {filteredData.map((teamData, index) => {
+        {FilteredTeam.map((teamData, index) => {
           return (
             <div key={index} className="col-3">
               <TallyIteam key={teamData.teamName} teamData={teamData} />
