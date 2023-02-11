@@ -9,7 +9,7 @@ const TallyState =(props)=>{
   const [totalkill, settotalkill] = useState([])
   const [SelectedTeam, setSelectedTeam] = useState([])
   const [FilteredTeam, setFilteredTeam] = useState([])
-  // const [FilteredTeams, setFilteredTeams] = useState([])
+   const [FilteredTeams, setFilteredTeams] = useState([])
   
   const SelectTeams=(Teams)=>{
     setSelectedTeam(Teams)
@@ -36,8 +36,8 @@ const TallyState =(props)=>{
     
   };
   const FilteringTeam= (Teams)=>{
-    //  setFilteredTeam(Teams)
-    // console.log(SelectedTeam)
+      setFilteredTeams(Teams)
+    console.log(FilteredTeams,"why")
   }
   const DeadState = (team, player1Status, player2Status, player3Status, player4Status) => {
     let index = teams.indexOf(teams.filter(t => t.team === team)[0]);
@@ -88,7 +88,8 @@ const TallyState =(props)=>{
            SelectTeams,
            FilteringTeam,
            FilteredTeam,
-           getfilter
+           getfilter,
+           FilteredTeams
 
           }}
         >

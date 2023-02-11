@@ -6,12 +6,14 @@ import AddTeamB from './AddTeamB';
 import SelectTeam from './SelectTeam';
 import TallyIteam from './TallyIteam';
 import { useState } from 'react';
+import Display from '../Display/Display';
 
 
 export default function Addteam() {
   const mid = useParams()
   const m_id = mid.id
   const [filteredData, setFilteredData] = useState(JSON.parse(localStorage.getItem(`${m_id}-filteredData`)) || []);  
+  const [finaldata, setfinaldata] = useState([])
   const context = useContext(AddteamContext)
   const { Addteam,getTeams} = context
   const context2 = useContext(TallyContext)
@@ -24,8 +26,10 @@ export default function Addteam() {
   }, [])
   useEffect(() => {
     getfilter(m_id)
-    // console.log(value,"final")
+    console.log(FilteredTeam,"final")
   }, [m_id,filteredData])
+  
+
   useEffect(() => {
     if(SelectedTeam.length > 0) {
       setFilteredData(
@@ -35,7 +39,6 @@ export default function Addteam() {
         );
         console.log(FilteredTeam,"filter")
         cond = true
-        FilteringTeam(filteredData)
       }
     }, [SelectedTeam])
     
@@ -43,8 +46,27 @@ export default function Addteam() {
       localStorage.setItem(`${m_id}-filteredData`, JSON.stringify(filteredData))
       addFilterteam(m_id,filteredData)
       console.log(filteredData,"filteredData")
+      
+    }, [filteredData])
+    useEffect(() => {
+      if(FilteredTeam && FilteredTeam.value) {
+        setfinaldata(FilteredTeam.value.map(team => {
+          return {
+            teamName: team.teamName,
+            teamTag: team.teamTag,
+            teamLogo: team.teamLogo,
+            player_1: team.player_1,
+          player_2: team.player_2,
+          player_3: team.player_3,
+          player_4: team.player_4,
+          player_5: team.player_5,
+        };
+      }));
+    }
+    console.log(finaldata,"finalwhy")
+    FilteringTeam(filteredData)
     
-  }, [filteredData])
+  }, [FilteredTeam]);
   
   
   const handleSubmit = async () => {
@@ -54,10 +76,12 @@ export default function Addteam() {
   
   return (
     <>
-    <AddTeamB  handleSubmit={handleSubmit} />
+    <Display/>
+     <AddTeamB  handleSubmit={handleSubmit} />
+   
     <div style={{marginLeft:"57px",marginTop:"75px"}}>
     <div className="d-flex flex-wrap">
-        {FilteredTeam.map((teamData, index) => {
+        {filteredData.map((teamData, index) => {
           return (
             <div key={index} className="col-3">
               <TallyIteam key={teamData.teamName} teamData={teamData} />

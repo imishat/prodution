@@ -6,37 +6,39 @@ import { useContext,useState,useEffect } from 'react';
 export default function CustomizedTables() {
     const context = useContext(AddteamContext)
     const contexts = useContext(TallyContext)
-    const {  FilteredTeam} = context
-    const {teams,totalkill  } = contexts
+    const {  } = context
+    const {teams,totalkill,FilteredTeams  } = contexts
     const length =20
     let count = 1;
     const [totalKills, setTotalKills] = useState({});
+    const [aliveCounts, setAliveCounts] = useState([]);
     useEffect(() => {
-      const totalKills = {};
-      FilteredTeam.forEach(team => {
+      if (FilteredTeams) {
+        const totalKills = {};
+        FilteredTeams.forEach(team => {
           totalKills[team.teamTag] = team.totalKills;
-      });
-      setTotalKills(totalKills);
-  }, [FilteredTeam]);
-  
-  const [aliveCounts, setAliveCounts] = useState([]);
-  
-
-  useEffect(() => {
-    const newAliveCounts = [];
-  
-    teams.forEach(team => {
-      const aliveStatus = [team.player1Status, team.player2Status, team.player3Status, team.player4Status];
-      const count = aliveStatus.filter(status => status === true).length;
-  
-      newAliveCounts.push({
-        team: team.team,
-        count: count,
-      });
-    });
-  
-    setAliveCounts(newAliveCounts);
-  }, [teams]);
+        });
+        setTotalKills(totalKills);
+      }
+      console.log(FilteredTeams,"filred teams")
+    }, [FilteredTeams]);
+    
+    
+    useEffect(() => {
+      if (teams) {
+        const newAliveCounts = [];
+        teams.forEach(team => {
+          const aliveStatus = [team.player1Status, team.player2Status, team.player3Status, team.player4Status];
+          const count = aliveStatus.filter(status => status === true).length;
+          newAliveCounts.push({
+            team: team.team,
+            count: count,
+          });
+        });
+        setAliveCounts(newAliveCounts);
+      }
+      // console.log(teams);
+    }, [teams]);
   return (
     <table style={{border:"1px solid green"}} class="table">
   <thead  >
@@ -51,7 +53,8 @@ export default function CustomizedTables() {
     
   <tbody style={{background:"black",color:"white"}}>
     {
-        FilteredTeam.map((table,index)=>{
+        
+         FilteredTeams &&FilteredTeams.map((table,index)=>{
             count = index +1
             const team = aliveCounts.find(team => team.team === table.teamName);
             const team2 = totalkill.find(team => team.team === table.teamName);
