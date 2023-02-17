@@ -39,6 +39,7 @@ export default function CustomizedTables() {
       }
       // console.log(teams);
     }, [teams]);
+ 
   return (
     <table style={{border:"1px solid green"}} class="table">
   <thead  >

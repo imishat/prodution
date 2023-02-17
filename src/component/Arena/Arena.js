@@ -18,7 +18,7 @@ export default function Addteam() {
   const { Addteam,getTeams} = context
   const context2 = useContext(TallyContext)
   let cond = false
-  const {addFilterteam ,SelectedTeam,FilteringTeam,SelectTeams,getfilter,FilteredTeam} = context2
+  const {addFilterteam ,SelectedTeam,FilteringTeam,SelectTeams,getfilter,FilteredTeam,setAlive } = context2
   const value = FilteredTeam.value
    useEffect(() => {
     
@@ -37,8 +37,10 @@ export default function Addteam() {
           return SelectedTeam.includes(team.teamName);
         })
         );
-        console.log(FilteredTeam,"filter")
-        cond = true
+        cond = SelectedTeam.length
+        console.log(cond,"length")
+        setAlive(cond)
+
       }
     }, [SelectedTeam])
     
@@ -84,7 +86,7 @@ export default function Addteam() {
         {filteredData.map((teamData, index) => {
           return (
             <div key={index} className="col-3">
-              <TallyIteam key={teamData.teamName} teamData={teamData} />
+              <TallyIteam count={filteredData.length} key={teamData.teamName} teamData={teamData} />
             </div>
           );
         })}
