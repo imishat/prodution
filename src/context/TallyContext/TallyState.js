@@ -25,16 +25,15 @@ const TallyState =(props)=>{
     console.log(teamName,"lisa")
     const teamIndex = AliveteamCount.findIndex(team => team.teamName === teamName);
     if (teamIndex === -1) {
-      setAliveteamCount(prevState => [...prevState, { teamName, alive: alive - 1 }]);
+      setAliveteamCount(prevState => [...prevState, { teamName, alive: alive  }]);
+      setalive(prevAlive => prevAlive - 1);
     } else {
       setAliveteamCount(prevState => {
         const updatedTeams = [...prevState];
-        updatedTeams[teamIndex].alive = prevState[teamIndex].alive - 1;
-        return updatedTeams;
+        return updatedTeams; 
       });
     }
-    setalive(prevAlive => prevAlive - 1);
-    console.log(AliveteamCount,"AAditya")
+    
   };
   
   

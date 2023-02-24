@@ -6,7 +6,8 @@ import { useContext } from 'react';
 import TallyContext from '../../context/TallyContext/TallyContext';
 
 export default function TallyIteam(props) {
- 
+  let data=[]
+  
   const [player1Status, setPlayer1Status] = useState(
     JSON.parse(localStorage.getItem(`player1Status-${props.teamData._id}`)) || false
   );
@@ -37,9 +38,6 @@ export default function TallyIteam(props) {
     JSON.parse(localStorage.getItem(`totalKills-${props.teamData._id}`)) || 0
   );
 
-  useEffect(()=>{
-    ChangeAliveCount(props.count +1)
-  },[]);
   
 
   
@@ -63,9 +61,9 @@ export default function TallyIteam(props) {
         const count = aliveStatus.filter(status => status === true).length;
         if (count === 4) {
           ChangeAliveCount(props.teamData.teamName)
-          const data = AliveteamCount.find(team => team.teamName === props.teamData.teamName);
-          console.log(data,"aliveee")
-
+          data = AliveteamCount.find(team => team.teamName === props.teamData.teamName);
+          console.log(AliveteamCount,"aliveee")
+          
         }
       }
     }
@@ -73,7 +71,17 @@ export default function TallyIteam(props) {
  
   return (
     <div style={{border:"2px solid red",padding:"10px 40px",display:"flex",flexDirection:"column",width:"400px",borderRadius:"10px",background:"black",color:"white",alignItems:"center",textDecoration:"underline ",margin:"10px 10px"}}>
-    <div style={{position:"relative", background:"white",left:"-176px",color:"black",top:"29px"}} > <div id={props.data.alive}></div></div>
+    <div style={{position:"relative", background:"white",left:"-176px",color:"black",top:"29px"}} > <div>#    <div>
+      {props.teamData.map((team) => {
+        const foundTeam = AliveteamCount.find((aliveTeam) => aliveTeam.teamName === team.Teamname);
+        const aliveCount = foundTeam ? foundTeam.alive.length : 0;
+        return (
+          <div key={team.Teamname}>
+          {aliveCount}
+          </div>
+        );
+      })}
+    </div></div></div>
     <h4>  TEAM  NAME: {props.teamData.teamName}</h4>
     <div style={{display:"flex",alignItems:"center",}}>
     {props.teamData.teamTag} {props.teamData.player_1.name} :  <IncDecCounter id={props.teamData.player_1._id} updateTotalKills={updateTotalKills}/> <div class="form-check">
