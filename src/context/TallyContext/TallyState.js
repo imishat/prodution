@@ -3,41 +3,46 @@ import TallyContext from "./TallyContext";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const TallyState =(props)=>{
+const TallyState = (props) => {
   const port = "http://localhost:5000";
   const [teams, setTeams] = useState([]);
   const [totalkill, settotalkill] = useState([])
   const [SelectedTeam, setSelectedTeam] = useState([])
   const [FilteredTeam, setFilteredTeam] = useState([])
-   const [FilteredTeams, setFilteredTeams] = useState([])
-   const [AliveteamCount, setAliveteamCount] = useState([])  
-   const [alive, setalive] = useState([])
-  const SelectTeams=(Teams)=>{
+  const [FilteredTeams, setFilteredTeams] = useState([])
+  const [AliveteamCount, setAliveteamCount] = useState([])
+  const [alive, setalive] = useState([])
+  const SelectTeams = (Teams) => {
     setSelectedTeam(Teams)
     // console.log(SelectedTeam)
   }
-  const setAlive = (count)=>
-  {
+  const setAlive = (count) => {
     setalive(count)
   }
 
+  const undoAliveCount = (teamName) => {
+    // only perform this task if team position is most recent
+    if (AliveteamCount.findIndex(team => team.teamName === teamName) === AliveteamCount.length - 1) {
+      setalive(prevAlive => prevAlive + 1);
+      setAliveteamCount(prevState => prevState.filter((_, i) => i != prevState.length - 1))
+    }
+  }
+
   const ChangeAliveCount = (teamName) => {
-    console.log(teamName,"lisa")
+    console.log(teamName, "lisa")
     const teamIndex = AliveteamCount.findIndex(team => team.teamName === teamName);
     if (teamIndex === -1) {
-      setAliveteamCount(prevState => [...prevState, { teamName, alive: alive  }]);
+      setAliveteamCount(prevState => [...prevState, { teamName, alive: alive }]);
       setalive(prevAlive => prevAlive - 1);
-    } else {
-      setAliveteamCount(prevState => {
-        const updatedTeams = [...prevState];
-        return updatedTeams; 
-      });
+      console.log(alive, '------al');
+      console.log(AliveteamCount);
     }
-    
-  };
-  
-  
-  
+  }
+
+
+
+
+
   const getfilter = async (id) => {
     // console.log("this is it")
 
@@ -48,15 +53,15 @@ const TallyState =(props)=>{
       },
     });
     const json = await response.json();
-    console.log("hi " ,json)
+    console.log("hi ", json)
     setFilteredTeam(json);
-    console.log("you " ,FilteredTeam)
-    
-    
+    console.log("you ", FilteredTeam)
+
+
   };
-  const FilteringTeam= (Teams)=>{
-      setFilteredTeams(Teams)
-    console.log(FilteredTeams,"why")
+  const FilteringTeam = (Teams) => {
+    setFilteredTeams(Teams)
+    console.log(FilteredTeams, "why")
   }
   const DeadState = (team, player1Status, player2Status, player3Status, player4Status) => {
     let index = teams.indexOf(teams.filter(t => t.team === team)[0]);
@@ -71,15 +76,15 @@ const TallyState =(props)=>{
       setTeams((prevTeams) => [...prevTeams, { team, player1Status, player2Status, player3Status, player4Status }]);
     }
   };
-  const addFilterteam = async (matchId,value) => {
-      // console.log("this is it")
+  const addFilterteam = async (matchId, value) => {
+    // console.log("this is it")
     // console.log(value,"value")
     const response = await fetch(`${port}/api/filteredteam/storefilterteam`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({matchId,value }), // body data type must match "Content-Type" header
+      body: JSON.stringify({ matchId, value }), // body data type must match "Content-Type" header
     });
   };
   const KillState = (team, kill) => {
@@ -92,32 +97,32 @@ const TallyState =(props)=>{
       });
     } else {
       // Add new team
-      settotalkill((prevTeams) => [...prevTeams, { team,kill }]);
+      settotalkill((prevTeams) => [...prevTeams, { team, kill }]);
     }
   };
-      return (
-        <TallyContext.Provider
-          value={{
-            DeadState,
-           teams,
-           KillState,
-           totalkill,
-           addFilterteam,
-           SelectedTeam,
-           SelectTeams,
-           FilteringTeam,
-           FilteredTeam,
-           getfilter,
-           FilteredTeams,
-           AliveteamCount,
-           ChangeAliveCount,
-           setAlive 
-
-          }}
-        >
-          {props.children}
-        </TallyContext.Provider>
-      );
+  return (
+    <TallyContext.Provider
+      value={{
+        DeadState,
+        teams,
+        KillState,
+        totalkill,
+        addFilterteam,
+        SelectedTeam,
+        SelectTeams,
+        FilteringTeam,
+        FilteredTeam,
+        getfilter,
+        FilteredTeams,
+        AliveteamCount,
+        ChangeAliveCount,
+        setAlive,
+        undoAliveCount
+      }}
+    >
+      {props.children}
+    </TallyContext.Provider>
+  );
 
 }
 export default TallyState;

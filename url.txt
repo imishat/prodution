@@ -1,0 +1,1 @@
+mongodb+srv://voidash:codingjokers@cluster0.uf0mp.mongodb.net/tournament
