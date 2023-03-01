@@ -82,6 +82,18 @@ const TeamModel = new Schema({
     type: String,
     require: true,
   },
+  position:{
+    type: Number,
+    default: 0,
+  },
+  Points:{
+    type: Number,
+    default: 0,
+  },
+  Kills:{
+    type: Number,
+    default: 0,
+  },
   player_1: {
     type: PlayerSchema,
   },
@@ -104,6 +116,11 @@ const AllMatch = new mongoose.Schema({
   });
 
 const MatchesData = new mongoose.Schema({
+  matchID:{
+    type: Schema.Types.ObjectId,
+    ref: "MatchModel",
+    unique: true
+  },
   match:{
     type:MatchModel
 },
