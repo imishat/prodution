@@ -14,6 +14,16 @@ const PlayerSchema = new Schema({
     type: String,
     required: true,
   },
+  status:{
+    type: Boolean,
+    default: false,
+  },
+  kills:{
+    type:Number,
+    default: 0,
+  }
+
+
 });
 
 const Team = new mongoose.Schema({
@@ -32,6 +42,17 @@ const Team = new mongoose.Schema({
   teamLogo: {
     type: String,
     require: true,
+  },
+  totalkills:{
+    type: Number,
+    default: 0,
+  },
+  totalpoints:{
+    type: Number,
+    default: 0,
+  },
+  position:{
+    type: Number,
   },
   player_1: {
     type: PlayerSchema,

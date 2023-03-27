@@ -1,11 +1,11 @@
 import React from 'react'
 
-export default function Topfragger() {
+export default function OverallFragger() {
   return (
   <>
     <div
         style={{
-            background:"black",
+            // background:"black",
           height: "231px",
           display: "flex",
           flexDirection:"column",
@@ -15,7 +15,7 @@ export default function Topfragger() {
        <h2 style={{ position: "relative", left: "0px", color: "white", fontSize: "290px", fontFamily: "teko", marginTop: "-5px", marginLeft: "-25px", WebkitTextStrokeWidth: "1px", top:"-67px",
   WebkitTextStrokeColor: "white",
   color: "transparent",opacity:"67%"}}>
-        FRAGGER OF THE MATCH
+        FRAGGER OF OVERALL
       </h2>
         <img
           style={{ position: "relative", left: "70px",top:"-385px" }}
@@ -24,7 +24,7 @@ export default function Topfragger() {
           alt=""
         />
        <div style={{width:"1121px",position:"relative",left:"445px",top:"-595px",color:"white",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-        <div style={{display:"flex",fontFamily:'teko',fontWeight:"700px",justifyContent:"space-between",width:"1086px"}} >
+        <div style={{display:"flex",fontFamily:'teko',fontWeight:"700px",justifyContent:"space-between",width:"969px"}} >
         <h2 style={{fontSize:"40px"}}>PUBG MOBILE BATTLE OF THOUGHT SEASON 1</h2>
         <div style={{backgroundColor:"#187d5d",borderRadius:"4px",padding:"0px 10px"}}>
 
@@ -32,7 +32,7 @@ export default function Topfragger() {
         </div>
 
         </div>
-        <h2 style={{fontFamily:"teko",fontWeight:"700",fontSize:"176px",marginTop:"-42px"}}>FRAGGER OF THE MATCH</h2>
+        <h2 style={{fontFamily:"teko",fontWeight:"700",fontSize:"176px",marginTop:"-42px"}}>FRAGGER OF OVERALL</h2>
        </div>
       </div>
      
@@ -53,7 +53,7 @@ export default function Topfragger() {
 </div>  
 <div style={{display:"flex",fontFamily:"teko",justifyContent:"space-evenly" , alignItems:"center",height:"93px",marginTop:"8px",clipPath:"polygon(16.84px 0px, 224.9px 0px, 227.9px 4.59px, 326.25px 4.59px, 330.12px 0px, 397.36px 0px, 406px 9.17px, 406px 93px, 227.9px 93px, 224.12px 87.11px, 96.74px 87.11px, 93.74px 93px, 0px 93px, 0px 15.6px)",   backgroundColor:"white"}}>
   <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "156px" ,textAlign:"center" ,borderRadius:"5px"}}>KILLS</h2>
+    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "156px" ,textAlign:"center" ,borderRadius:"5px"}}>MATCH PLAYED</h2>
     <p style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"15px"}}>0</p>
   </div>
   <div style={{borderLeft:"2px solid black",height:"70px"}}>
@@ -73,7 +73,7 @@ export default function Topfragger() {
 
   </div>
   <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "171px" ,textAlign:"center" ,borderRadius:"5px"}}>OVERALL RANKING</h2>
+    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "171px" ,textAlign:"center" ,borderRadius:"5px"}}>KILL PER MATCH</h2>
     <p style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"15px"}}>0</p>
   </div>
   </div>      
@@ -94,7 +94,7 @@ export default function Topfragger() {
 </div>  
 <div style={{display:"flex",fontFamily:"teko",justifyContent:"space-evenly" , alignItems:"center",height:"93px",marginTop:"8px",clipPath:"polygon(16.84px 0px, 224.9px 0px, 227.9px 4.59px, 326.25px 4.59px, 330.12px 0px, 397.36px 0px, 406px 9.17px, 406px 93px, 227.9px 93px, 224.12px 87.11px, 96.74px 87.11px, 93.74px 93px, 0px 93px, 0px 15.6px)",   backgroundColor:"white"}}>
   <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "156px" ,textAlign:"center" ,borderRadius:"5px"}}>KILLS</h2>
+    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "156px" ,textAlign:"center" ,borderRadius:"5px"}}>MATCH PLAYED</h2>
     <p style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"15px"}}>0</p>
   </div>
   <div style={{borderLeft:"2px solid black",height:"70px"}}>
@@ -114,7 +114,7 @@ export default function Topfragger() {
 
   </div>
   <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "171px" ,textAlign:"center" ,borderRadius:"5px"}}>OVERALL RANKING</h2>
+    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "171px" ,textAlign:"center" ,borderRadius:"5px"}}>KILL PER MATCH</h2>
     <p style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"15px"}}>0</p>
   </div>
   </div>      
@@ -135,7 +135,7 @@ export default function Topfragger() {
 </div>  
 <div style={{display:"flex",fontFamily:"teko",justifyContent:"space-evenly" , alignItems:"center",height:"93px",marginTop:"8px",clipPath:"polygon(16.84px 0px, 224.9px 0px, 227.9px 4.59px, 326.25px 4.59px, 330.12px 0px, 397.36px 0px, 406px 9.17px, 406px 93px, 227.9px 93px, 224.12px 87.11px, 96.74px 87.11px, 93.74px 93px, 0px 93px, 0px 15.6px)",   backgroundColor:"white"}}>
   <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "156px" ,textAlign:"center" ,borderRadius:"5px"}}>KILLS</h2>
+    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "156px" ,textAlign:"center" ,borderRadius:"5px"}}>MATCH PLAYED</h2>
     <p style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"15px"}}>0</p>
   </div>
   <div style={{borderLeft:"2px solid black",height:"70px"}}>
@@ -155,7 +155,7 @@ export default function Topfragger() {
 
   </div>
   <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "171px" ,textAlign:"center" ,borderRadius:"5px"}}>OVERALL RANKING</h2>
+    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "171px" ,textAlign:"center" ,borderRadius:"5px"}}>KILL PER MATCH</h2>
     <p style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"15px"}}>0</p>
   </div>
   </div>      
@@ -176,7 +176,7 @@ export default function Topfragger() {
 </div>  
 <div style={{display:"flex",fontFamily:"teko",justifyContent:"space-evenly" , alignItems:"center",height:"93px",marginTop:"8px",clipPath:"polygon(16.84px 0px, 224.9px 0px, 227.9px 4.59px, 326.25px 4.59px, 330.12px 0px, 397.36px 0px, 406px 9.17px, 406px 93px, 227.9px 93px, 224.12px 87.11px, 96.74px 87.11px, 93.74px 93px, 0px 93px, 0px 15.6px)",   backgroundColor:"white"}}>
   <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "156px" ,textAlign:"center" ,borderRadius:"5px"}}>KILLS</h2>
+    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "156px" ,textAlign:"center" ,borderRadius:"5px"}}>MATCH PLAYED</h2>
     <p style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"15px"}}>0</p>
   </div>
   <div style={{borderLeft:"2px solid black",height:"70px"}}>
@@ -196,7 +196,7 @@ export default function Topfragger() {
 
   </div>
   <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "171px" ,textAlign:"center" ,borderRadius:"5px"}}>OVERALL RANKING</h2>
+    <h2 style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"26px",backgroundColor:"#008930" ,height:"34px" ,width: "171px" ,textAlign:"center" ,borderRadius:"5px"}}>KILL PER MATCH</h2>
     <p style={{ fontSize:"34px",fontWeight:"600",position:"relative",top:"15px"}}>0</p>
   </div>
   </div>      

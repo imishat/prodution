@@ -27,6 +27,9 @@ import Schedule from "./component/Display/Schedule";
 import Next from "./component/Display/Next";
 import Arena from "./component/Arena/Arena";
 import TallyState from "./context/TallyContext/TallyState";
+import OverallFragger from "./component/Display/OverallFragger";
+import OverallMvp from "./component/Display/OverallMvp";
+import Matchstanding from "./component/Display/Matchstanding";
 
 function App() {
 
@@ -102,6 +105,20 @@ function App() {
             />
           <Route
             exact
+            path="/overall"
+            element={
+             <OverallFragger/>
+            }
+            />
+          <Route
+            exact
+            path="/overallmvp"
+            element={
+             <OverallMvp/>
+            }
+            />
+          <Route
+            exact
             path="/mvp"
             element={
              <Mvp/>
@@ -119,6 +136,13 @@ function App() {
             path="/schedule"
             element={
              <Schedule/>
+            }
+            />
+          <Route
+            exact
+            path="/matchstanding"
+            element={
+             <Matchstanding/>
             }
             />
           <Route

@@ -8,16 +8,19 @@ export default function TournamentBanner() {
   
   return (
     
-    <div style={{display:"flex",border:"4px solid green",position:"absolute",bottom:"0px", left:"5px" ,height:"150px",width:"485px",justifyContent:"center",alignItems:"center",background:"linear-gradient(to right,#00100b,#055e3d)"}}>
-
-    <div style={{background:"linear-gradient(to ,#00100b,#055e3d)"}}   >
-      <img height="125px" src="https://media.discordapp.net/attachments/1043905461193285702/1066734848343031828/400.png" alt="" />
+    <div style={{display:"flex",position:"absolute",bottom:"0px", left:"5px" ,height:"142px",width:"530px",justifyContent:"center",alignItems:"center"}}>
+      <div style={{width:"144px",height:"141px",backgroundColor:"#004e37",marginRight:"3px"}}>
+        <img width="144px" height="141px" src="https://media.discordapp.net/attachments/1067392894236905472/1086146168792305675/logo400.png" alt="" />
+      </div>
+      <div style={{height:"142px",display:"flex",flexDirection:"column",justifyContent:"center"}}>
+    <div style={{display:"flex",flexDirection:"column",justifyContent:"center",height:"114px",width:'378px',backgroundColor:"#252525",color:"white",borderLeft:"5px solid #004e37",borderBottom:"4px solid #004e37",paddingLeft:"5px"}}>
+    <h2 style={{fontFamily:"teko",fontSize:"69px",fontWeight:'600',height:'54px'}}>GRAND - FINAL</h2>
+    <h4 style={{fontFamily:"teko",fontSize:"44px",height:"44px"}}>MATCH 1 - ERANGEL</h4>
     </div>
-    <div style={{display:"flex",flexDirection:"column",justifyContent:"center",background:"linear-gradient(to right, skyblue, #87CEEB, #ADD8E6)",height:"125px",padding:"0px 5px",alignItems:"center",width:"330px"}} >
-        <h2 style={{fontFamily:"Bebas Neue "}} >{Groups.title}</h2>
-        <h4 style={{backgroundColor:"black",color:"white",width:"300px",textAlign:"center",marginTop:"-5px"}}> MATCH 13/{Groups.total_matches} </h4>
-        <h4 style={{backgroundColor:"black",color:"white",width:"250px",textAlign:"center"}}> ERANGEL </h4>
+    <div style={{display:"flex",alignItems:"center",justifyContent:'center',height:"27px",width:"378px",borderLeft:"5px solid #004e37",backgroundColor:"white"}}>
+    <h6 style={{marginTop:"4px",fontFamily:"teko",fontSize:"27px"}}>PUBG MOBILE BATTLE OF THOUGHTS SEASON 01</h6>
     </div>
+      </div>
     </div>
   )
 }

@@ -4,46 +4,45 @@ import React from 'react'
 export default function Next() {
   return (
  <>
- <div
+
+<div
         style={{
-          background: "black",
+            background:"black",
           height: "231px",
           display: "flex",
-          alignItems: "center",
+          flexDirection:"column",
+          // alignItems: "center",
         }}
       >
-        <div style={{ width: "1300px", textAlign: "center" }}>
-          <h1 style={{ fontSize: "180px", fontWeight:"400", color: "white",fontFamily:"Teko",position:"relative",left:"-149px" ,top:"52px"}}> MATCH FRAGGER</h1>
-          <p style={{color:"white",fontSize:"40px",fontFamily:"Teko",position:"relative",left:"140px",top:"-4px"}}> GRAND FINAL M1/12</p>
+       <h2 style={{ position: "relative", left: "0px", color: "white", fontSize: "290px", fontFamily: "teko", marginTop: "-5px", marginLeft: "-25px", WebkitTextStrokeWidth: "1px", top:"-67px",
+  WebkitTextStrokeColor: "white",
+  color: "transparent",opacity:"67%"}}>
+        COMING NEXT MAP
+      </h2>
+        <img
+          style={{ position: "relative", left: "70px",top:"-385px" }}
+          width="300px"
+          src="https://media.discordapp.net/attachments/1067392894236905472/1086146168792305675/logo400.png"
+          alt=""
+        />
+       <div style={{width:"1121px",position:"relative",left:"445px",top:"-595px",color:"white",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+        <div style={{display:"flex",fontFamily:'teko',fontWeight:"700px",justifyContent:"space-between",width:"839px"}} >
+        <h2 style={{fontSize:"40px"}}>PUBG MOBILE BATTLE OF THOUGHT SEASON 1</h2>
+        <div style={{backgroundColor:"#187d5d",borderRadius:"4px",padding:"0px 10px"}}>
+
+        <h2 style={{fontSize:"40px"}}>QUALIFY ROUND M1/16</h2>
         </div>
-        <div style={{ position: "absolute", right: "40px" }}>
-          <img
-            src="https://media.discordapp.net/attachments/1043905461193285702/1066734848343031828/400.png"
-            height="210px"
-            alt=""
-          />
+
         </div>
+        <h2 style={{fontFamily:"teko",fontWeight:"700",fontSize:"176px",marginTop:"-42px"}}>COMING NEXT MAP</h2>
+       </div>
       </div>
-      <div style={{margin:"102px 290px",display:"flex"}}>
-        <div style={{height:"678px",width:"678px",borderRadius:"14px"}}>
-            
-            <img style={{borderRadius:"14px",border:"10px solid #00ffea "}} height="678px" width="678px" src="https://media.discordapp.net/attachments/1067392894236905472/1067497345924743251/Pubg_erangel_map.jpg?width=604&height=604 " alt="" />
-        </div>
-        <div style={{height:"678px",width:"667px",marginLeft:"50px"}}>
-            <div style={{height:"195px",width:"597px",background:"black",color:"white",fontSize:"102px",fontFamily:"Teko",fontWeight:"600",borderRadius:"7px",border:"7px solid #00ffea ",margin:"16px 0px",textAlign:"center"}}>
-                <p style={{paddingTop:"23px"}}>GRAND-FINAL</p>
-            </div>
-            <div style={{height:"148px",width:"629px",background:"#c8cdcc",color:"black",fontSize:"102px",fontFamily:"Teko",fontWeight:"600",borderRadius:"7px",border:"7px solid #00ffea ",margin:"16px 0px",textAlign:'center'}}>
-                <p style={{marginTop:"-4px"}}>COMING  NEXT</p>
-            </div>
-            <div style={{height:"107px",width:"667px",background:"white",color:"black",fontSize:"102px",fontFamily:"Teko",fontWeight:"600",borderRadius:"7px",border:"7px solid #00ffea ",margin:"16px 0px",textAlign:'center'}}>
-                <p style={{marginTop:"-23px"}}>DAY 1 - MATCH 1</p>
-            </div>
-            <div style={{height:"161px",width:"579px",background:"#c8cdcc",color:"black",fontSize:"102px",fontFamily:"Teko",fontWeight:"600",borderRadius:"7px",border:"7px solid #00ffea ",margin:"16px 0px",textAlign:'center'}}>
-                <p style={{marginTop:"-4px"}}>ERANGEL</p>
-            </div>
-        </div>
-      </div>
+      <div style={{marginTop:"66px",marginLeft:"344px",clipPath:"polygon(0% 0%, 97.35% 0%, 100% 4.42%, 100% 33.98%, 99.23% 36.71%, 99.23% 51.47%, 100% 52.21%, 100% 100%, 74.57% 100%, 72.7% 97.49%, 31.89% 97.49%, 30.14% 100%, 1.95% 100%, 0% 96.31%)",width:"1250px"}}>
+  <div style={{clipPath:"polygon(0% 7.37%, 2.92% 0.25%, 53.9% 0.45%, 55.28% 3.43%, 79.94% 3.43%, 82.59% 0%, 99.86% 0.25%, 99.86% 49.88%, 98.61% 52.33%, 98.74% 60.93%, 100% 62.64%, 100% 94.1%, 97.46% 100%, 0% 100%, 0% 80.59%, 2.55% 78.54%, 2.55% 48.16%, 0% 44.23%)",border:"5px solid #25e9ab",overflow: "hidden"}}>
+    <img height="697" width="1242.57px" style={{border: "none"}} src="https://media.discordapp.net/attachments/1067392894236905472/1085132600504492062/maxresdefault.jpg?width=1074&height=604" alt="" />
+  </div>
+</div>
+
  </>
   )
 }

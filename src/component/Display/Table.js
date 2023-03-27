@@ -47,8 +47,8 @@ export default function CustomizedTables() {
       <th  scope="col">#</th>
       <th  align='center' style={{width:"200px"}} scope="col">Team</th>
       <th  scope="col">ALIVE</th>
-      <th  scope="col">PTS</th>
       <th  scope="col">ELIMS</th>
+      <th  scope="col">PTS</th>
     </tr>
   </thead>
     
@@ -79,8 +79,8 @@ export default function CustomizedTables() {
       <span style={{ color: 'gray' }}>|||</span>
     </>)}
         {aliveCount === 4 && <span style={{background: 'grey'}}>||||</span>}</td> 
-      <td align='center' >{20}</td>
       <td align='center' >{Elms}</td>
+      <td align='center' >{20}</td>
     </tr>)
     
         })
