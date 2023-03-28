@@ -1,0 +1,46 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    width: 100vw;
+
+    background-color: #181818;
+}
+
+
+.scores {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.header {
+    display: flex;
+    gap: 2rem;
+    width: 100%; /* main width*/
+
+    padding: 3rem 0;
+}
+
+.vs-component {
+    background: url('../../assets/box-bg-right.png');
+
+    width: 188px;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-50-white {
+    font-size: 50px;
+    font-weight: 700;
+    color: white;
+
+    margin: 0;
+
+    text-transform: uppercase;
+}

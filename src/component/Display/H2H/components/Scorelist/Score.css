@@ -1,0 +1,36 @@
+.score-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-family: 'teko', sans-serif;
+
+    width: 100%;
+    height: 77px;
+    gap: 10px;
+
+    /* border: 1px solid green;
+    background-color: #181818; */
+}
+
+.score-left {
+    background: url('../../assets/box-bg-left.png');
+    
+    width: 188px;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-right {
+    background: url('../../assets/box-bg-right.png');
+
+    width: 188px;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
