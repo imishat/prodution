@@ -43,7 +43,7 @@ export default function H2h() {
         <section className="main-content">
             <div className="header">
                 <p className='text-50-white'>Player Name</p>
-                <div className="vs-component">
+                <div className="score">
                     <p className='text-50-white'>VS</p>
                 </div>
                 <p className='text-50-white'>Player Name</p>
