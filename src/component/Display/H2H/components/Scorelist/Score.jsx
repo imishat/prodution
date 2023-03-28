@@ -1,8 +1,10 @@
-import 'Score.css';
+import './Score.css';
 
 import React from 'react'
 
-const Score = (scoreLeft, topic, scoreRight) => {
+
+
+export  function Score(scoreLeft, topic, scoreRight) {
   return (
     <div className='score-wrapper'>
       <div className="score-left">{scoreLeft}</div>
@@ -11,5 +13,3 @@ const Score = (scoreLeft, topic, scoreRight) => {
     </div>
   )
 }
-
-export default Score

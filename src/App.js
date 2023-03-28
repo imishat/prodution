@@ -30,6 +30,8 @@ import TallyState from "./context/TallyContext/TallyState";
 import OverallFragger from "./component/Display/OverallFragger";
 import OverallMvp from "./component/Display/OverallMvp";
 import Matchstanding from "./component/Display/Matchstanding";
+import OverallStanding from "./component/Display/OverallStanding";
+import H2h from "./component/Display/H2H/container/main/H2h";
 
 function App() {
 
@@ -114,7 +116,7 @@ function App() {
             exact
             path="/overallmvp"
             element={
-             <OverallMvp/>
+             <H2h/>
             }
             />
           <Route
@@ -122,6 +124,13 @@ function App() {
             path="/mvp"
             element={
              <Mvp/>
+            }
+            />
+          <Route
+            exact
+            path="/overallstanding"
+            element={
+             <OverallStanding/>
             }
             />
           <Route
