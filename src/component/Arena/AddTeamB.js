@@ -25,7 +25,7 @@ export default function AddTeamB(props) {
       openPopup ={openPopup}
       setOpenPopup={setOpenPopup}
       >
-    <SelectTeam ha handleSubmit={props.handleSubmit} />
+    <SelectTeam m_id={props.m_id} handleSubmit={props.handleSubmit} />
     </Popup>
         </>
   )

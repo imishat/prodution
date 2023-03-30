@@ -9,6 +9,7 @@ const PlayerSchema = new Schema({
   photo: {
     type: String,
     required: true,
+    default:"",
   },
 });
 

@@ -13,7 +13,7 @@ export default function Addteam() {
   const mid = useParams()
   const m_id = mid.id
   const [filteredData, setFilteredData] = useState(JSON.parse(localStorage.getItem(`${m_id}-filteredData`)) || []);
-  const [finaldata, setfinaldata] = useState([])
+  
   const context = useContext(AddteamContext)
   const { Addteam, getTeams } = context
   const context2 = useContext(TallyContext)
@@ -31,18 +31,26 @@ export default function Addteam() {
 
 
   useEffect(() => {
-    if (SelectedTeam.length > 0) {
-      setFilteredData(
-        Addteam.filter(team => {
-          return SelectedTeam.includes(team.teamName);
-        })
-      );
-      cond = SelectedTeam.length
-      console.log(cond, "length")
-      setAlive(cond)
+    // Find the team array for the selected match
+    const selectedMatch = SelectedTeam.find(filter => filter.matchId === m_id);
+    const selectedTeamArray = selectedMatch ? selectedMatch.team : [];
 
+    console.log(selectedTeamArray,"bibeklaudu")
+  
+    // Filter Addteam based on the selected teams for the match
+    const filteredAddteam = Addteam.filter(team =>{ return selectedTeamArray.includes(team.teamName)});
+  
+    // Update the filter and set the alive state based on the selected teams
+    if (filteredAddteam.length > 0) {
+      setFilteredData(filteredAddteam);
+      // setAlive(true);
+    } else {
+      setFilteredData([]);
+      // setAlive(false);
     }
-  }, [SelectedTeam])
+    console.log(filteredData,"bibek laudu")
+  }, [SelectedTeam]);
+  
 
   useEffect(() => {
     localStorage.setItem(`${m_id}-filteredData`, JSON.stringify(filteredData))
@@ -50,25 +58,7 @@ export default function Addteam() {
     console.log(filteredData, "filteredData")
 
   }, [filteredData])
-  useEffect(() => {
-    if (FilteredTeam && FilteredTeam.value) {
-      setfinaldata(FilteredTeam.value.map(team => {
-        return {
-          teamName: team.teamName,
-          teamTag: team.teamTag,
-          teamLogo: team.teamLogo,
-          player_1: team.player_1,
-          player_2: team.player_2,
-          player_3: team.player_3,
-          player_4: team.player_4,
-          player_5: team.player_5,
-        };
-      }));
-    }
-    console.log(finaldata, "finalwhy")
-    FilteringTeam(filteredData)
 
-  }, [FilteredTeam]);
 
 
   const handleSubmit = async () => {
@@ -79,14 +69,14 @@ export default function Addteam() {
   return (
     <>
       <Display />
-      <AddTeamB handleSubmit={handleSubmit} />
+      <AddTeamB m_id={m_id} handleSubmit={handleSubmit} />
 
       <div style={{ marginLeft: "57px", marginTop: "75px" }}>
         <div className="d-flex flex-wrap">
           {filteredData.map((teamData, index) => {
             return (
               <div key={index} className="col-3">
-                <TallyIteam count={filteredData.length} key={teamData.teamName} teamData={teamData} />
+                <TallyIteam count={filteredData.length} m_id={m_id} key={teamData.teamName} teamData={teamData} />
               </div>
             );
           })}

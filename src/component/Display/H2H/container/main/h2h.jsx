@@ -42,7 +42,7 @@ export default function H2h() {
     <>
     <div
         style={{
-            background: "black",
+            // background: "black",
           height: "231px",
           display: "flex",
           flexDirection: "column",
@@ -92,7 +92,7 @@ export default function H2h() {
               fontFamily: "teko",
               fontWeight: "700px",
               justifyContent: "space-between",
-              width: "953px",
+              width: "1110px",
             }}
           >
             <h2 style={{ fontSize: "40px" }}>
@@ -112,11 +112,11 @@ export default function H2h() {
             style={{
               fontFamily: "teko",
               fontWeight: "700",
-              fontSize: "195px",
-              marginTop: "-53px",
+              fontSize: "192px",
+              marginTop: "-46px",
             }}
           >
-            OVERALL STANDING
+           PLAYER HEAD TO HEAD
           </h2>
         </div>
       </div>
@@ -130,18 +130,22 @@ export default function H2h() {
       ></div>
     <div className="main">
         <section className="main-content">
-            <div className="header">
-                <p className='text-50-white'>Player Name</p>
-                <div className="score">
-                    <p className='text-50-white'>VS</p>
-                </div>
-                <p className='text-50-white'>Player Name</p>
-            </div>
-            <div className='scores'>
-            {scoreData.map((item) => (
-              <Score scoreLeft={item.scoreLeft} topic={item.topic} scoreRight={item.scoreRight} />
-              ))}
-            </div>
+            <img height="894px" width="894px" style={{position:"relative", left:"300px"}} src="https://media.discordapp.net/attachments/1067392894236905472/1085094239110692864/ar4.png?width=671&height=671" alt="" />
+            <div className="scoreBoard">
+              <div className="header">
+                  <p className='text-50-white'>AADITYA</p>
+                  <div style={{clipPath:" polygon(91.49% 0%, 100% 23.38%, 100% 100%, 10.64% 100%, 0% 76.62%, 0% 0%)"}}  className="score">
+                      <p className='text-50-white'>VS</p>
+                  </div>
+                  <p className='text-50-white'>HYPHEN </p>
+              </div>
+              <div className='scores'>
+              {scoreData.map((item) => (
+                <Score scoreLeft={item.scoreLeft} topic={item.topic} scoreRight={item.scoreRight} />
+                ))}
+              </div>
+            </div> 
+            <img height="894px" width="894px" style={{position:"relative", right:"300px"}}  src="https://media.discordapp.net/attachments/1067392894236905472/1085094240784220210/ar1.png?width=671&height=671" alt="" />
         </section>
     </div>
               </>

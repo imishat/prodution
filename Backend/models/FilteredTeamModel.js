@@ -53,6 +53,7 @@ const Team = new mongoose.Schema({
   },
   position:{
     type: Number,
+    default:0,
   },
   player_1: {
     type: PlayerSchema,

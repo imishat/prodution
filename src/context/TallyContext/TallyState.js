@@ -2,6 +2,7 @@ import React from "react";
 import TallyContext from "./TallyContext";
 import { useState } from "react";
 import { useEffect } from "react";
+// import selectedTeam from "../../../Backend/models/selectedTeam";
 
 const TallyState = (props) => {
   const port = "http://localhost:5000";
@@ -12,10 +13,9 @@ const TallyState = (props) => {
   const [FilteredTeams, setFilteredTeams] = useState([])
   const [AliveteamCount, setAliveteamCount] = useState([])
   const [alive, setalive] = useState([])
-  const SelectTeams = (Teams) => {
-    setSelectedTeam(Teams)
-    // console.log(SelectedTeam)
-  }
+  const SelectTeams = (team, id) => {
+    selectingteam(team,id)
+  };
   const setAlive = (count) => {
     setalive(count)
   }
@@ -59,6 +59,22 @@ const TallyState = (props) => {
 
 
   };
+  const getselectedteam = async () => {
+    // console.log("this is it")
+
+    const response = await fetch(`${port}/api/filteredteam//selectedteamfetch`, {
+      method: "GET", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+    console.log("owl ", json)
+    setSelectedTeam(json);
+    console.log("mithology ", SelectedTeam)
+
+
+  };
   const FilteringTeam = (Teams) => {
     setFilteredTeams(Teams)
     console.log(FilteredTeams, "why")
@@ -87,6 +103,18 @@ const TallyState = (props) => {
       body: JSON.stringify({ matchId, value }), // body data type must match "Content-Type" header
     });
   };
+  const selectingteam = async (team,matchId) => {
+    // console.log("this is it")
+    // console.log(value,"value")
+    const response = await fetch(`${port}/api/filteredteam/selectedteam`, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ matchId, team }), // body data type must match "Content-Type" header
+    });
+    getselectedteam()
+  };
   const KillState = (team, kill) => {
     let index = totalkill.indexOf(totalkill.filter(t => t.team === team)[0]);
     if (index !== -1) {
@@ -100,6 +128,29 @@ const TallyState = (props) => {
       settotalkill((prevTeams) => [...prevTeams, { team, kill }]);
     }
   };
+  const updatePlayersKill = async (matchId, teamId ,playerId, kills,status) => {
+    // console.log("this is it")
+    // console.log(value,"value")
+    const response = await fetch(`${port}/api/filteredteam/updatekill`, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ matchId, teamId ,playerId, kills,status }), // body data type must match "Content-Type" header
+    });
+  };
+  const   updatekillsandpoints = async (matchId, teamId,totalkills,totalpoints) => {
+    // console.log("this is it")
+    // console.log(value,"value")
+    const response = await fetch(`${port}/api/filteredteam/teaminfo`, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ matchId, teamId,totalkills,totalpoints }), // body data type must match "Content-Type" header
+    });
+  };
+  
   return (
     <TallyContext.Provider
       value={{
@@ -116,8 +167,11 @@ const TallyState = (props) => {
         FilteredTeams,
         AliveteamCount,
         ChangeAliveCount,
+        undoAliveCount,
         setAlive,
-        undoAliveCount
+        updatekillsandpoints,
+        updatePlayersKill,
+        getselectedteam
       }}
     >
       {props.children}

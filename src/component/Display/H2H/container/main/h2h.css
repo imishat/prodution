@@ -6,23 +6,31 @@
     /* height: 1170px;
     width: 1920px; */
 
-    background-color: #181818;
+     /* background-color: #181818;  */
 }
 
+.main-content {
+    display: flex;
+
+}
 
 .scores {
     display: flex;
+   
     flex-direction: column;
     gap: 10px;
 }
 
 .header {
+    
     display: flex;
+    justify-content: space-between;
     gap: 2rem;
     width: 100%; /* main width*/
 
     padding: 3rem 0;
 }
+
 
 .score {
     width: 188px;
@@ -34,11 +42,19 @@
 }
 
 .text-50-white {
+    font-family: "teko";
     font-size: 50px;
+
     font-weight: 700;
     color: white;
 
     margin: 0;
 
     text-transform: uppercase;
+}
+.scoreBoard{
+    width: 935px;
+    z-index: 1;
+    /* display: flex; */
+    
 }
