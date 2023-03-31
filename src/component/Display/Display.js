@@ -9,10 +9,14 @@ import Logout from '../Logout';
 import Wwcd from './Wwcd';
 import Topfragger from './Topfragger';
 import { useEffect } from 'react';
+import { useParams } from "react-router-dom";
 
 function TabPanel(props) {
+  
   const { children, value, index, ...other } = props;
 
+  
+  
   return (
     <div
       role="tabpanel"
@@ -44,17 +48,25 @@ function a11yProps(index) {
 }
 
 export default function Display() {
+  const mid = useParams();
+  const m_id = mid.id;
+  useEffect(() => {
+    console.log(m_id,"me it is")
+  }, [])
     const [value, setValue] = React.useState(localStorage.getItem('selectedTab') || 0);
+    const [loaded, setLoaded] = React.useState(false);
+    
     useEffect(() => {
         localStorage.setItem('selectedTab', value);
+        setLoaded(true);
       }, [value]);
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
   
     return (
-      <Box sx={{ width: '100%' }}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ width: '100%',zIndex:"1" }}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider',zIndex:"1" }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab label="LIVE MATCH STAT" {...a11yProps(0)} />
             <Tab label="WWCD" {...a11yProps(1)} />
@@ -62,11 +74,20 @@ export default function Display() {
             <Tab label="TOP FRAGGER" {...a11yProps(3)} />
           </Tabs>
         </Box>
+        <div
+        style={{
+          // position: 'relative', // add position: relative
+          // height: loaded ? 'auto' : 0, // set height to auto only when loaded is true\
+          // top:"100px",
+          overflow: 'hidden', // add overflow: hidden
+          transition: 'height 0.3s ease-in-out', // add transition property
+        }}
+      >
         <TabPanel value={value} index={0}>
-         <Logout/>
+         <Logout m_id={m_id} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Wwcd/>
+          <Wwcd mid={mid} />
         </TabPanel>
         <TabPanel value={value} index={2}>
           <Mvp/>
@@ -74,6 +95,7 @@ export default function Display() {
         <TabPanel value={value} index={3}>
           <Topfragger/>
         </TabPanel>
+        </div>
       </Box>
     );
 }

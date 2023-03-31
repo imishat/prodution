@@ -96,7 +96,7 @@ export default function TallyIteam(props) {
 
   useEffect(() => {
     console.log(totalKills,totalPoints, props.teamData._id,props.m_id, "why this is")
-    updatekillsandpoints(props.m_id, props.teamData._id,totalKills,totalPoints )
+    updatekillsandpoints(props.m_id, props.teamData._id,totalKills,totalPoints)
   }, [totalKills,totalPoints])
   
 
@@ -104,12 +104,13 @@ export default function TallyIteam(props) {
 
   function handleChange(e){
     console.log(e.target.value,"value me")
+    localStorage.setItem(`${props.m_id}-position-${props.teamData._id}`, JSON.stringify(e.target.value));
     setTotalPoints( pointTable[e.target.value])
   }
 
   return (
     <div style={{ border: "2px solid red", padding: "10px 40px", display: "flex", flexDirection: "column", width: "400px", borderRadius: "10px", background: "black", color: "white", alignItems: "center", textDecoration: "underline ", margin: "10px 10px" }}>
-      <div style={{ position: "relative", background: "white", left: "-166px", color: "black", top: "-8px" }} > <div>#<input onChange={handleChange} style={{height:"28px",width:"48px"}} type="number" size="1"/>  <div>
+      <div style={{ position: "relative", background: "white", left: "-166px", color: "black", top: "-8px" }} > <div>#<input  onChange={handleChange} style={{height:"28px",width:"48px"}} type="number" size="1" hy />  <div>
       </div></div></div>
 
       <h4>  TEAM  NAME: {props.teamData.teamName}</h4>

@@ -1,7 +1,23 @@
 import { height } from "@mui/system";
 import React from "react";
+import { useContext ,useEffect ,useState } from "react";
+import TallyContext from '../../context/TallyContext/TallyContext';
 
-export default function Wwcd() {
+export default function Wwcd(props) {
+  const contexts = useContext(TallyContext)
+  const [teams, setteams] = useState([])
+
+  const {FilteredTeam ,getfilter } = contexts
+  useEffect(() => {
+    const me = getfilter(props.m_id)
+    setteams(me)
+  }, [])
+  
+  useEffect(() => {
+  console.log(teams,"this is filtered")
+
+}, [teams])
+
   return (
     <>
       <div

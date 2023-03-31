@@ -56,6 +56,7 @@ const TallyState = (props) => {
     console.log("hi ", json)
     setFilteredTeam(json);
     console.log("you ", FilteredTeam)
+    return json;
 
 
   };
