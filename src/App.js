@@ -37,144 +37,144 @@ function App() {
 
   return (
     <>
-    <TallyState>
+      <TallyState>
 
-   
-    <MatchState>
 
- 
-    <GroupstageState>
+        <MatchState>
 
-    <AddteamState>
 
-    <TournamentState>
+          <GroupstageState>
 
-      <Router>
-        <Header />
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <>
-                <TournamentList
-                  />
-              </>
-            }
-            />
-          <Route
-            exact
-            path="/groupstage/:id"
-            element={
-              <Groupstage
-              />
-            }
-            />
-          <Route
-            exact
-            path="/teams"
-            element={
-              <Addteam/>
-            }
-            />
-          <Route
-            exact
-            path="/match/:id"
-            element={
-              <AddMatch/>
-            }
-            />
-          <Route
-            exact
-            path="/wwcd"
-            element={
-             <Wwcd/>
-            }
-            />
-          <Route
-            exact
-            path="/logout"
-            element={
-             <Logout/>
-            }
-            />
-          <Route
-            exact
-            path="/topf"
-            element={
-             <Topfragger/>
-            }
-            />
-          <Route
-            exact
-            path="/overall"
-            element={
-             <OverallFragger/>
-            }
-            />
-          <Route
-            exact
-            path="/overallmvp"
-            element={
-             <H2h/>
-            }
-            />
-          <Route
-            exact
-            path="/mvp"
-            element={
-             <Mvp/>
-            }
-            />
-          <Route
-            exact
-            path="/overallstanding"
-            element={
-             <OverallStanding/>
-            }
-            />
-          <Route
-            exact
-            path="/display"
-            element={
-              <Display/>
-            }
-            />
-          <Route
-            exact
-            path="/schedule"
-            element={
-             <Schedule/>
-            }
-            />
-          <Route
-            exact
-            path="/matchstanding"
-            element={
-             <Matchstanding/>
-            }
-            />
-          <Route
-            exact
-            path="/next"
-            element={
-             <Next/>
-            }
-            />
-          <Route
-            exact
-            path="/tally/:id"
-            element={
-             <Arena/>
-            }
-            />
-        </Routes>
-      </Router>
-            </TournamentState>
+            <AddteamState>
+
+              <TournamentState>
+
+                <Router>
+                  <Header />
+                  <Routes>
+                    <Route
+                      exact
+                      path="/"
+                      element={
+                        <>
+                          <TournamentList
+                          />
+                        </>
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/groupstage/:id"
+                      element={
+                        <Groupstage
+                        />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/teams"
+                      element={
+                        <Addteam />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/match/:id"
+                      element={
+                        <AddMatch />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/wwcd"
+                      element={
+                        <Wwcd />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/logout"
+                      element={
+                        <Logout />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/topf"
+                      element={
+                        <Topfragger />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/overall"
+                      element={
+                        <OverallFragger />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/overallmvp"
+                      element={
+                        <H2h />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/mvp"
+                      element={
+                        <Mvp />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/overallstanding"
+                      element={
+                        <OverallStanding />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/display"
+                      element={
+                        <Display />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/schedule"
+                      element={
+                        <Schedule />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/matchstanding"
+                      element={
+                        <Matchstanding />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/next"
+                      element={
+                        <Next />
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/tally/:id"
+                      element={
+                        <Arena />
+                      }
+                    />
+                  </Routes>
+                </Router>
+              </TournamentState>
             </AddteamState>
-            </GroupstageState>
-            </MatchState>
-            </TallyState>
+          </GroupstageState>
+        </MatchState>
+      </TallyState>
     </>
   );
 }

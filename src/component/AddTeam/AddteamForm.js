@@ -1,19 +1,22 @@
 import React from "react";
-import { useState,useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import AddteamContext from "../../context/AddteamContext/AddteamContext";
 
+
 export default function AddteamForm() {
-  const context =useContext(AddteamContext)
-  const {addTeam} =context
+
+
+  const context = useContext(AddteamContext)
+  const { addTeam } = context
   const [addteams, setaddteams] = useState("")
-    const onChange=(e)=>{
-      setaddteams({...addteams,[e.target.name]:e.target.value})
-    }
-    const handleClick=(e)=>{
-      e.preventDefault()
-      console.log(addteams)
-       addTeam(addteams.teamName,addteams.teamTag,addteams.teamLogo,addteams.player_1,addteams.player_1photo,addteams.player_2,addteams.player_2photo,addteams.player_3,addteams.player_3photo,addteams.player_4,addteams.player_4photo,addteams.player_5,addteams.player_5photo)
-    }
+  const onChange = (e) => {
+    setaddteams({ ...addteams, [e.target.name]: e.target.value })
+  }
+  const handleClick = (e) => {
+    e.preventDefault()
+    console.log(addteams)
+    addTeam(addteams.teamName, addteams.teamTag, addteams.teamLogo, addteams.player_1, addteams.player_1photo, addteams.player_2, addteams.player_2photo, addteams.player_3, addteams.player_3photo, addteams.player_4, addteams.player_4photo, addteams.player_5, addteams.player_5photo)
+  }
 
 
   return (

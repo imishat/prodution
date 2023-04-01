@@ -28,11 +28,13 @@ export default function Addteam() {
     getfilter,
     FilteredTeam,
     setAlive,
+    getselectedteam
   } = context2;
   const value = FilteredTeam.value;
   useEffect(() => {
     getTeams();
-  }, []);
+    getselectedteam();
+  },);
   useEffect(() => {
     getfilter(m_id);
     console.log(FilteredTeam, "final");
@@ -43,6 +45,7 @@ export default function Addteam() {
     const selectedMatch = SelectedTeam.find(
       (filter) => filter.matchId === m_id
     );
+
     const selectedTeamArray = selectedMatch ? selectedMatch.team : [];
 
     console.log(selectedTeamArray, "bibeklaudu");
@@ -65,7 +68,7 @@ export default function Addteam() {
   }, [SelectedTeam]);
 
   useEffect(() => {
-     localStorage.setItem(`${m_id}-filteredData`, JSON.stringify(filteredData));
+    localStorage.setItem(`${m_id}-filteredData`, JSON.stringify(filteredData));
     addFilterteam(m_id, filteredData);
     console.log(filteredData, "filteredData");
   }, [filteredData]);

@@ -63,7 +63,7 @@ const TallyState = (props) => {
   const getselectedteam = async () => {
     // console.log("this is it")
 
-    const response = await fetch(`${port}/api/filteredteam//selectedteamfetch`, {
+    const response = await fetch(`${port}/api/filteredteam/selectedteamfetch`, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
@@ -104,11 +104,12 @@ const TallyState = (props) => {
       body: JSON.stringify({ matchId, value }), // body data type must match "Content-Type" header
     });
   };
+
   const selectingteam = async (team,matchId) => {
     // console.log("this is it")
     // console.log(value,"value")
     const response = await fetch(`${port}/api/filteredteam/selectedteam`, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      method: "POST", 
       headers: {
         "Content-Type": "application/json",
       },
@@ -116,6 +117,7 @@ const TallyState = (props) => {
     });
     getselectedteam()
   };
+
   const KillState = (team, kill) => {
     let index = totalkill.indexOf(totalkill.filter(t => t.team === team)[0]);
     if (index !== -1) {
