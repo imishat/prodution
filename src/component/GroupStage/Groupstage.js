@@ -13,7 +13,6 @@ export default function Groupstage(props) {
     const{Groups,getGroup} = context
     useEffect(() => {
       getGroup(t_id)
-      console.log(t_id.id)
     }, [])
     let divstyle = {
         padding: '10px',
@@ -29,7 +28,7 @@ export default function Groupstage(props) {
     
     {Groups.length===0? "NO GROUPS":
     Groups.map((tn)=>{
-      return <GroupstageItem  Groups={tn}/>
+      return <GroupstageItem key={tn._id}  Groups={tn}/>
     })
 }
     

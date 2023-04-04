@@ -10,7 +10,7 @@ const AddteamState =(props)=>{
 
   //Fetch all team
       const getTeams = async () => {
-        // console.log("this is it")
+        // ("this is it")
     
         const response = await fetch(`${port}/api/teams/fetchallteams`, {
           method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -24,7 +24,7 @@ const AddteamState =(props)=>{
       };
       //Add team 
       const addTeam = async (teamName,teamTag,teamLogo,player_1,player_1photo,player_2,player_2photo,player_3,player_3photo,player_4,player_4photo,player_5,player_5photo ) => {
-        // console.log("this is it")
+        // ("this is it")
        
         const response = await fetch(`${port}/api/teams/createteam`, {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -33,7 +33,6 @@ const AddteamState =(props)=>{
           },
           body: JSON.stringify({teamName,teamTag,teamLogo,"player_1":{"name":player_1,"photo":player_1photo},"player_2":{"name":player_2,"photo":player_2photo},"player_3":{"name":player_3,"photo":player_3photo},"player_4":{"name":player_4,"photo":player_4photo},"player_5":{"name":player_5,"photo":player_5photo}}), // body data type must match "Content-Type" header
         });
-        console.log(player_5photo)
         const team = {
           _id: "63c8f3950fbc44671c55049e",
     teamName: teamName,
@@ -51,8 +50,8 @@ const AddteamState =(props)=>{
       };
       //delete team 
       const deleteTeam = async (id) => {
-        console.log(id)
-        console.log("delete the node with id", id);
+        (id)
+        ("delete the node with id", id);
         const newTeam = Addteam.filter((team) => {
           return team._id !== id;
         });

@@ -79,7 +79,7 @@ router.post("/updatekill", async (req, res) => {
             ? teamSubdoc.player_4
             : null;
 
-        console.log(player, "additya");
+        // console.log(player, "additya");
         if (player) {
           // Update the kills field of the player subdocument
           player.kills = kills;
@@ -121,20 +121,26 @@ router.post("/teaminfo", async (req, res) => {
 
       if (teamIndex !== -1) {
         const teamSubdoc = team.value[teamIndex];
-        console.log(teamSubdoc, "hw os");
-
+        
         // Find the player subdocument with the given playerId in the team subdocument
-
+        
         if (teamSubdoc) {
           //   // Update the kills field of the player subdocument
           teamSubdoc.totalkills = totalkills;
           teamSubdoc.totalpoints = totalpoints;
+          console.log(teamSubdoc, "sw os");
 
           //   // Mark the team document as modified and save it
-          team.markModified("value");
-          const result = await team.save();
+          try{
 
-          res.send(result);
+            team.markModified("value");
+            const result = await team.save();
+            res.send(result);
+          }
+          catch(err){
+            console.log("error",err)
+          }
+
         } else {
           res.status(404).send("Player not found");
         }

@@ -14,7 +14,6 @@ export default function Wwcd(props) {
   }, [])
   
   useEffect(() => {
-  console.log(teams,"this is filtered")
 
 }, [teams])
 

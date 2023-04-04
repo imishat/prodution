@@ -26,7 +26,7 @@ TournamentList
 
     {tournaments.length===0? "NO TOURNAMENTS":
     tournaments.map((tn)=>{
-      return <TournamentListItem tournaments={tn}  />
+      return <TournamentListItem key={tn._id}  tournaments={tn}  />
     })
 }
     

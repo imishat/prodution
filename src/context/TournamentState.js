@@ -8,7 +8,7 @@ const TournamentState = (props) => {
   const [tournaments, settournaments] = useState(tournamentInitial);
 
   const getTournament = async () => {
-    // console.log("this is it")
+    // ("this is it")
 
     const response = await fetch(`${port}/api/tournament/fetchalltournament`, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -22,7 +22,7 @@ const TournamentState = (props) => {
   };
 
   const addTournament = async (name, url) => {
-    // console.log("this is it")
+    // ("this is it")
 
     const response = await fetch(`${port}/api/tournament`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -40,7 +40,6 @@ const TournamentState = (props) => {
     settournaments(tournaments.concat(tournament));
   };
   const deleteTournament = async (id) => {
-    console.log("delete the node with id", id);
     const newTournament = tournaments.filter((tournament) => {
       return tournament._id !== id;
     });

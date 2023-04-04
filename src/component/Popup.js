@@ -11,7 +11,7 @@ export default function Popup(props) {
     
 
    
-   <Dialog  open={openPopup} fullWidth="true">
+   <Dialog  open={openPopup} fullWidth={true}>
   
 
         <DialogTitle>

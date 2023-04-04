@@ -37,7 +37,10 @@ function TabPanel(props) {
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]).isRequired,
 };
 
 function a11yProps(index) {
@@ -51,7 +54,6 @@ export default function Display() {
   const mid = useParams();
   const m_id = mid.id;
   useEffect(() => {
-    console.log(m_id,"me it is")
   }, [])
     const [value, setValue] = React.useState(localStorage.getItem('selectedTab') || 0);
     const [loaded, setLoaded] = React.useState(false);

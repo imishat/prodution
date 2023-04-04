@@ -7,7 +7,7 @@ const MatchState = (props) => {
 const intialmatch =[ ]
   const [Match, setMatch] = useState(intialmatch)
   const getMatch = async (id) => {
-    // console.log("this is it")
+    // ("this is it")
 
     const response = await fetch(`${port}/api/match/fetchallmatch/${id}`, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -20,7 +20,7 @@ const intialmatch =[ ]
     
   };
   const addMatch = async ( group_id,match_no,time,map) => {
-    // console.log("this is it")
+    // ("this is it")
 
     const response = await fetch(`${port}/api/match/creatematch`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -41,7 +41,6 @@ const intialmatch =[ ]
     setMatch(Match.concat(match));
   };
   const deleteMatch = async (id) => {
-    console.log("delete the node with id", id);
     const newmatch= Match.filter((match) => {
       return match._id !== id;
     });

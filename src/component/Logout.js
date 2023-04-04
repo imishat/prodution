@@ -2,9 +2,6 @@ import React, { useEffect } from 'react'
 import CustomizedTables from "./Display/Table"
 import TournamentBanner from './Display/TournamentBanner'
 export default function Logout(props) {
-  useEffect(() => {
-    console.log(props.m_id,"CG")
-  }, [])
   
   return (
     <div >

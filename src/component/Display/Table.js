@@ -21,7 +21,7 @@ export default function CustomizedTables(props) {
           return data.value
         })
         const setTeam = rankTeams[0]
-        console.log(setTeam,"filred teams")
+        (setTeam,"filred teams")
         setrankteam( setTeam)
     }, [])
     
@@ -33,7 +33,7 @@ export default function CustomizedTables(props) {
     //     });
     //     setTotalKills(totalKills);
     //   }
-    //   console.log(FilteredTeams,"filred teams")
+    //   (FilteredTeams,"filred teams")
     // }, [FilteredTeams]);
     
     
@@ -50,7 +50,7 @@ export default function CustomizedTables(props) {
         });
         setAliveCounts(newAliveCounts);
       }
-      // console.log(teams);
+      // (teams);
     }, [teams]);
  
   return (
@@ -69,7 +69,6 @@ export default function CustomizedTables(props) {
     {
         
          rankteam.map((table,index)=>{
-          console.log("its me",rankteam)
             count = index +1
             const team = aliveCounts.find(team => team.team === table.teamName);
             const team2 = totalkill.find(team => team.team === table.teamName);

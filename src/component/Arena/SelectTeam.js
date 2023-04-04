@@ -31,7 +31,6 @@ export default function SelectTeam(props) {
 
   useEffect(() => {
         
-    console.log(SelectedTeam,"why mediceme");
   }, [SelectedTeam])
   
   return (

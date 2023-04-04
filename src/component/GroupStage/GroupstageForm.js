@@ -8,7 +8,7 @@ export default function GroupstageForm(props) {
     const [group, setgroup] = useState("")
     const handleClick=(e)=>{
         e.preventDefault()
-        console.log(group)
+        (group)
         addGroup(props.t_id,group.title,group.total_matches)
     }
     const onChange=(e)=>{

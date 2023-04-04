@@ -37,7 +37,6 @@ export default function Addteam() {
   },);
   useEffect(() => {
     getfilter(m_id);
-    console.log(FilteredTeam, "final");
   }, [m_id, filteredData]);
 
   useEffect(() => {
@@ -48,7 +47,6 @@ export default function Addteam() {
 
     const selectedTeamArray = selectedMatch ? selectedMatch.team : [];
 
-    console.log(selectedTeamArray, "bibeklaudu");
 
     // Filter Addteam based on the selected teams for the match
     const filteredAddteam = Addteam.filter((team) => {
@@ -64,22 +62,20 @@ export default function Addteam() {
       // localStorage.setItem(`${m_id}-filteredData`, JSON.stringify([]));
       // setAlive(false);
     }
-    console.log(filteredData, "bibek laudu");
   }, [SelectedTeam]);
 
   useEffect(() => {
     localStorage.setItem(`${m_id}-filteredData`, JSON.stringify(filteredData));
     addFilterteam(m_id, filteredData);
-    console.log(filteredData, "filteredData");
   }, [filteredData]);
 
   const handleSubmit = async () => {
-    // console.log(filteredData,"value")
+    // (filteredData,"value")
   };
 
   return (
     <>
-      <Display />
+      {/* <Display /> */}
       <AddTeamB m_id={m_id} handleSubmit={handleSubmit} />
 
       <div style={{ marginLeft: "57px", marginTop: "75px" }}>

@@ -6,20 +6,20 @@ import TallyContext from '../../context/TallyContext/TallyContext';
 
 export default function IncDecCounter(props) {
   const { id, updateTotalKills,matchid,teamid ,status} = props;
-  const [count, setCount] = useState(
-    Number(localStorage.getItem(`count_${id}_${matchid}`)) || 0
+  const [count, setCount] = useState(0
+    // Number(localStorage.getItem(`count_${id}_${matchid}`)) || 0
   );// useState returns a pair. 'count' is the current state. 'setCount' is a function we can use to update the state.
 
   const context = useContext(TallyContext)
   const {  updatePlayersKill} = context
   useEffect(() => {
-    localStorage.setItem(`count_${id}_${matchid}`, count);
+    // localStorage.setItem(`count_${id}_${matchid}`, count);
   }, [count, id]);
 
   useEffect(() => {
-    console.log("update players kill",matchid,teamid,id,count,status)
-    updatePlayersKill(matchid,teamid,id,count,status)
-  }, [  count])
+    // console.log("update players",matchid,teamid,id,count,status)
+    // updatePlayersKill(matchid,teamid,id,count,status)
+  }, [  count , status])
   
 
   function increment() {
@@ -37,7 +37,7 @@ export default function IncDecCounter(props) {
   }
 
   return (
-    <diva
+    <div
       style={{
         padding:"10px 10px",
         display: "flex",
@@ -47,6 +47,6 @@ export default function IncDecCounter(props) {
       <button onClick={decrement}>-</button>
       <p style={{ margin: "5px 5px" }}>{count}</p>
       <button onClick={increment}>+</button>
-    </diva>
+    </div>
   );
 }

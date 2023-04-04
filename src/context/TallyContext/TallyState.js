@@ -29,13 +29,10 @@ const TallyState = (props) => {
   }
 
   const ChangeAliveCount = (teamName) => {
-    console.log(teamName, "lisa")
     const teamIndex = AliveteamCount.findIndex(team => team.teamName === teamName);
     if (teamIndex === -1) {
       setAliveteamCount(prevState => [...prevState, { teamName, alive: alive }]);
       setalive(prevAlive => prevAlive - 1);
-      console.log(alive, '------al');
-      console.log(AliveteamCount);
     }
   }
 
@@ -44,7 +41,7 @@ const TallyState = (props) => {
 
 
   const getfilter = async (id) => {
-    // console.log("this is it")
+    // ("this is it")
 
     const response = await fetch(`${port}/api/filteredteam/fetchFilterteam/${id}`, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -53,15 +50,13 @@ const TallyState = (props) => {
       },
     });
     const json = await response.json();
-    console.log("hi ", json)
     setFilteredTeam(json);
-    console.log("you ", FilteredTeam)
     return json;
 
 
   };
   const getselectedteam = async () => {
-    // console.log("this is it")
+    // ("this is it")
 
     const response = await fetch(`${port}/api/filteredteam/selectedteamfetch`, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -70,15 +65,13 @@ const TallyState = (props) => {
       },
     });
     const json = await response.json();
-    console.log("owl ", json)
     setSelectedTeam(json);
-    console.log("mithology ", SelectedTeam)
 
 
   };
   const FilteringTeam = (Teams) => {
     setFilteredTeams(Teams)
-    console.log(FilteredTeams, "why")
+    (FilteredTeams, "why")
   }
   const DeadState = (team, player1Status, player2Status, player3Status, player4Status) => {
     let index = teams.indexOf(teams.filter(t => t.team === team)[0]);
@@ -94,8 +87,8 @@ const TallyState = (props) => {
     }
   };
   const addFilterteam = async (matchId, value) => {
-    // console.log("this is it")
-    // console.log(value,"value")
+    // ("this is it")
+    // (value,"value")
     const response = await fetch(`${port}/api/filteredteam/storefilterteam`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -106,8 +99,8 @@ const TallyState = (props) => {
   };
 
   const selectingteam = async (team,matchId) => {
-    // console.log("this is it")
-    // console.log(value,"value")
+    // ("this is it")
+    // (value,"value")
     const response = await fetch(`${port}/api/filteredteam/selectedteam`, {
       method: "POST", 
       headers: {
@@ -132,8 +125,9 @@ const TallyState = (props) => {
     }
   };
   const updatePlayersKill = async (matchId, teamId ,playerId, kills,status) => {
-    // console.log("this is it")
-    // console.log(value,"value")
+    // ("this is it")
+    // (value,"value")
+    console.log("received ss",matchId, teamId ,playerId, kills,status)
     const response = await fetch(`${port}/api/filteredteam/updatekill`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -143,8 +137,9 @@ const TallyState = (props) => {
     });
   };
   const   updatekillsandpoints = async (matchId, teamId,totalkills,totalpoints) => {
-    // console.log("this is it")
-    // console.log(value,"value")
+    // ("this is it")
+    // (value,"value")
+    console.log("received",matchId, teamId,totalkills,totalpoints)
     const response = await fetch(`${port}/api/filteredteam/teaminfo`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {

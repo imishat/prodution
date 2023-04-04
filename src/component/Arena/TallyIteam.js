@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import TallyContext from '../../context/TallyContext/TallyContext';
 
 export default function TallyIteam(props) {
-  let [totalPoints, setTotalPoints] = useState(JSON.parse(localStorage.getItem(`totalpoints-${props.teamData._id}-${props.m_id}`)) || 0);
+  let [totalPoints, setTotalPoints] = useState( 0);
   let [isAllDead, setAllDead] = useState(false);
   let pointTable = {
     '1': 10,
@@ -40,7 +40,7 @@ export default function TallyIteam(props) {
   let data = []
   let [position, setPosition] = useState('');
 
-  playerstatus
+
   const [player1Status, setPlayer1Status] = useState(
     JSON.parse(localStorage.getItem(`player1Status-${props.teamData._id}`)) || false
   );
@@ -67,8 +67,8 @@ export default function TallyIteam(props) {
   }, [player4Status, props.teamData._id]);
   const context = useContext(TallyContext)
   const { DeadState, teams, KillState, totalkill, AliveteamCount, ChangeAliveCount, undoAliveCount, updatekillsandpoints } = context
-  const [totalKills, setTotalKills] = useState(
-    JSON.parse(localStorage.getItem(`totalKills-${props.teamData._id}-${props.m_id}`)) || 0
+  const [totalKills, setTotalKills] = useState( 0
+    // JSON.parse(localStorage.getItem(`totalKills-${props.teamData._id}-${props.m_id}`)) || 0
   );
 
   function mistakeClick() {
@@ -79,15 +79,14 @@ export default function TallyIteam(props) {
 
   useEffect(() => {
     // setTotalPoints(totalKills);
-    localStorage.setItem(`totalpoints-${props.teamData._id}-${props.m_id}`, JSON.stringify(totalKills));
+    // localStorage.setItem(`totalpoints-${props.teamData._id}-${props.m_id}`, JSON.stringify(totalKills));
   }, [totalKills]);
 
   useEffect(() => {
     KillState(props.teamData.teamName, totalKills)
-    localStorage.setItem(`totalKills-${props.teamData._id}-${props.m_id}`, JSON.stringify(totalKills));
+    // localStorage.setItem(`totalKills-${props.teamData._id}-${props.m_id}`, JSON.stringify(totalKills));
   }, [totalKills, props.teamData._id]);
   useEffect(() => {
-    console.log(teams)
     DeadState(props.teamData.teamName, player1Status, player2Status, player3Status, player4Status)
   }, [player1Status, player2Status, player3Status, player4Status]);
   function updateTotalKills(newCount) {
@@ -96,7 +95,6 @@ export default function TallyIteam(props) {
 
 
   useEffect(() => {
-    console.log(totalKills, totalPoints, props.teamData._id, props.m_id, "why this is")
     updatekillsandpoints(props.m_id, props.teamData._id, totalKills, totalPoints)
   }, [totalKills, totalPoints])
 
@@ -104,39 +102,38 @@ export default function TallyIteam(props) {
 
 
   function handleChange(e) {
-    console.log(e.target.value, "value me")
-    localStorage.setItem(`${props.m_id}-position-${props.teamData._id}`, JSON.stringify(e.target.value));
+    // localStorage.setItem(`${props.m_id}-position-${props.teamData._id}`, JSON.stringify(e.target.value));
     setTotalPoints(pointTable[e.target.value])
   }
 
   return (
     <div style={{ border: "2px solid red", padding: "10px 40px", display: "flex", flexDirection: "column", width: "400px", borderRadius: "10px", background: "black", color: "white", alignItems: "center", textDecoration: "underline ", margin: "10px 10px" }}>
-      <div style={{ position: "relative", background: "white", left: "-166px", color: "black", top: "-8px" }} > <div>#<input onChange={handleChange} style={{ height: "28px", width: "48px" }} type="number" size="1" hy />  <div>
+      <div style={{ position: "relative", background: "white", left: "-166px", color: "black", top: "-8px" }} > <div>#<input onChange={handleChange} style={{ height: "28px", width: "48px" }} type="number" size="1"  />  <div>
       </div></div></div>
 
       <h4>  TEAM  NAME: {props.teamData.teamName}</h4>
       <div style={{ display: "flex", alignItems: "center", }}>
-        {props.teamData.teamTag} {props.teamData.player_1.name} :  <IncDecCounter status={player1Status} teamid={props.teamData._id} matchid={props.m_id} id={props.teamData.player_1._id} updateTotalKills={updateTotalKills} /> <div class="form-check">
+        {props.teamData.teamTag} {props.teamData.player_1.name} :  <IncDecCounter status={player1Status} teamid={props.teamData._id} matchid={props.m_id} id={props.teamData.player_1._id} updateTotalKills={updateTotalKills} /> <div className="form-check">
           <input className="form-check-input" checked={player1Status} type="checkbox" value="" onChange={() => setPlayer1Status(!player1Status)} id="flexCheckDefault" />
-          <label className="form-check-label" for="flexCheckDefault">Dead</label>
+          <label className="form-check-label" htmlFor="flexCheckDefault">Dead</label>
         </div>
       </div>
       <div style={{ display: "flex", alignItems: "center" }}>
-        {props.teamData.teamTag} {props.teamData.player_2.name}:  <IncDecCounter status={player2Status} teamid={props.teamData._id} matchid={props.m_id} id={props.teamData.player_2._id} updateTotalKills={updateTotalKills} /> <div class="form-check">
+        {props.teamData.teamTag} {props.teamData.player_2.name}:  <IncDecCounter status={player2Status} teamid={props.teamData._id} matchid={props.m_id} id={props.teamData.player_2._id} updateTotalKills={updateTotalKills} /> <div className="form-check">
           <input className="form-check-input" checked={player2Status} type="checkbox" onChange={() => setPlayer2Status(!player2Status)} value="" id="flexCheckDefault" />
-          <label class="form-check-label" for="flexCheckDefault">Dead</label>
+          <label className="form-check-label" htmlFor="flexCheckDefault">Dead</label>
         </div>
       </div>
       <div style={{ display: "flex", alignItems: "center" }}>
-        {props.teamData.teamTag} {props.teamData.player_3.name} :  <IncDecCounter status={player3Status} teamid={props.teamData._id} matchid={props.m_id} id={props.teamData.player_3._id} updateTotalKills={updateTotalKills} /><div class="form-check">
-          <input class="form-check-input" checked={player3Status} type="checkbox" onChange={() => setPlayer3Status(!player3Status)} value="" id="flexCheckDefault" />
-          <label class="form-check-label" for="flexCheckDefault">Dead</label>
+        {props.teamData.teamTag} {props.teamData.player_3.name} :  <IncDecCounter status={player3Status} teamid={props.teamData._id} matchid={props.m_id} id={props.teamData.player_3._id} updateTotalKills={updateTotalKills} /><div className="form-check">
+          <input className="form-check-input" checked={player3Status} type="checkbox" onChange={() => setPlayer3Status(!player3Status)} value="" id="flexCheckDefault" />
+          <label className="form-check-label" htmlFor="flexCheckDefault">Dead</label>
         </div>
       </div>
       <div style={{ display: "flex", alignItems: "center" }}>
-        {props.teamData.teamTag} {props.teamData.player_3.name}  : <IncDecCounter status={player4Status} teamid={props.teamData._id} matchid={props.m_id} id={props.teamData.player_4._id} updateTotalKills={updateTotalKills} /><div class="form-check">
-          <input class="form-check-input" checked={player4Status} type="checkbox" onChange={() => setPlayer4Status(!player4Status)} value="" id="flexCheckDefault" />
-          <label class="form-check-label" for="flexCheckDefault">Dead</label>
+        {props.teamData.teamTag} {props.teamData.player_3.name}  : <IncDecCounter status={player4Status} teamid={props.teamData._id} matchid={props.m_id} id={props.teamData.player_4._id} updateTotalKills={updateTotalKills} /><div className="form-check">
+          <input className="form-check-input" checked={player4Status} type="checkbox" onChange={() => setPlayer4Status(!player4Status)} value="" id="flexCheckDefault" />
+          <label className="form-check-label" htmlFor="flexCheckDefault">Dead</label>
         </div>
       </div>
       <h4>Total Kills : {totalKills}</h4>

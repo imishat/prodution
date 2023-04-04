@@ -34,7 +34,7 @@ function Header() {
           style={logostyle}
           src="https://media.discordapp.net/attachments/901337110995410965/1045774899098177607/tie2_png.png?width=552&height=552"
           alt=""
-          srcset=""
+          srcSet=""
         />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

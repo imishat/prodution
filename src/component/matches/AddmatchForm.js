@@ -9,8 +9,8 @@ export default function AddmatchForm(props) {
   const [matches, setmatches] = useState("")
   const handleClick=(e)=>{
     e.preventDefault()
-    console.log(matches)
-    // console.log(props.g_id)
+    (matches)
+    // (props.g_id)
     addMatch(group_id,matches.match_no,matches.time,matches.map)
 }
   const onChange=(e)=>{
