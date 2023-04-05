@@ -4,9 +4,20 @@ import IncDecCounter from './IncDecCounter'
 import { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import TallyContext from '../../context/TallyContext/TallyContext';
+import axios from "axios"
 
 export default function TallyIteam(props) {
-  let [totalPoints, setTotalPoints] = useState( 0);
+
+  
+  useEffect(() => {
+    axios.get(`http://localhost:5000/api/filteredteam/getpoints/${props.m_id}/${props.teamData._id}`).then((res)=> {
+      const { rankpoint, totalkills, totalpoints } = res.data;
+      console.log(rankpoint, totalkills, totalpoints);
+      localStorage.setItem(`totalkills-${props.m_id}-${props.teamData._id}`,JSON.stringify(totalkills))
+      localStorage.setItem(`totalrankpoints-${props.m_id}-${props.teamData._id}`,JSON.stringify(rankpoint))
+    })
+  }, [])
+  let [totalPoints, setTotalPoints] = useState( JSON.parse(localStorage.getItem(`totalrankpoints-${props.m_id}-${props.teamData._id}`))  );
   let [isAllDead, setAllDead] = useState(false);
   let pointTable = {
     '1': 10,
@@ -67,20 +78,17 @@ export default function TallyIteam(props) {
   }, [player4Status, props.teamData._id]);
   const context = useContext(TallyContext)
   const { DeadState, teams, KillState, totalkill, AliveteamCount, ChangeAliveCount, undoAliveCount, updatekillsandpoints } = context
-  const [totalKills, setTotalKills] = useState( 0
-    // JSON.parse(localStorage.getItem(`totalKills-${props.teamData._id}-${props.m_id}`)) || 0
+  const [totalKills, setTotalKills] = useState( 
+    JSON.parse(localStorage.getItem(`totalkills-${props.m_id}-${props.teamData._id}`))
+    
   );
 
-  function mistakeClick() {
-
-  }
-
+  
+  
 
 
-  useEffect(() => {
-    // setTotalPoints(totalKills);
-    // localStorage.setItem(`totalpoints-${props.teamData._id}-${props.m_id}`, JSON.stringify(totalKills));
-  }, [totalKills]);
+
+ 
 
   useEffect(() => {
     KillState(props.teamData.teamName, totalKills)
@@ -95,7 +103,7 @@ export default function TallyIteam(props) {
 
 
   useEffect(() => {
-    updatekillsandpoints(props.m_id, props.teamData._id, totalKills, totalPoints)
+    updatekillsandpoints(props.m_id, props.teamData._id, totalKills,( totalPoints+totalKills),totalPoints)
   }, [totalKills, totalPoints])
 
 

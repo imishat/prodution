@@ -109,6 +109,7 @@ router.post("/teaminfo", async (req, res) => {
   const teamId = req.body.teamId;
   const totalkills = req.body.totalkills;
   const totalpoints = req.body.totalpoints;
+  const rankpoint = req.body.rankpoint;
   try {
     // Find the team document with the given matchId
     const team = await FilteredTeamModel.findOne({ matchId: matchId });
@@ -128,6 +129,7 @@ router.post("/teaminfo", async (req, res) => {
           //   // Update the kills field of the player subdocument
           teamSubdoc.totalkills = totalkills;
           teamSubdoc.totalpoints = totalpoints;
+          teamSubdoc.rankpoint = rankpoint;
           console.log(teamSubdoc, "sw os");
 
           //   // Mark the team document as modified and save it
@@ -159,6 +161,30 @@ router.post("/teaminfo", async (req, res) => {
 router.get("/fetchFilterteam/:id", async (req, res) => {
   const group = await FilteredTeamModel.find({ matchId: req.params.id });
   res.json(group);
+});
+router.get('/getpoints/:matchId/:teamId', async (req, res) => {
+  try {
+    const match = await FilteredTeamModel.findOne({ matchId: req.params.matchId });
+    if (!match) {
+      return res.status(404).json({ message: 'Match not found' });
+    }
+
+    const team = match.value.find((team) => team._id === req.params.teamId);
+    if (!team) {
+      return res.status(404).json({ message: 'Team not found' });
+    }
+
+    const stats = {
+      totalkills: team.totalkills,
+      totalpoints: team.totalpoints,
+      rankpoint: team.rankpoint,
+    };
+
+    res.json(stats);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
 });
 
 module.exports = router;

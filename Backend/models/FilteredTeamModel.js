@@ -51,6 +51,10 @@ const Team = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  rankpoint:{
+    type: Number,
+    default: 0,
+  },
   position:{
     type: Number,
     default:0,

@@ -136,7 +136,7 @@ const TallyState = (props) => {
       body: JSON.stringify({ matchId, teamId ,playerId, kills,status }), // body data type must match "Content-Type" header
     });
   };
-  const   updatekillsandpoints = async (matchId, teamId,totalkills,totalpoints) => {
+  const   updatekillsandpoints = async (matchId, teamId,totalkills,totalpoints,rankpoint) => {
     // ("this is it")
     // (value,"value")
     console.log("received",matchId, teamId,totalkills,totalpoints)
@@ -145,9 +145,10 @@ const TallyState = (props) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ matchId, teamId,totalkills,totalpoints }), // body data type must match "Content-Type" header
+      body: JSON.stringify({ matchId, teamId,totalkills,totalpoints,rankpoint }), // body data type must match "Content-Type" header
     });
   };
+  
   
   return (
     <TallyContext.Provider

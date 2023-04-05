@@ -34,7 +34,7 @@ export default function Addteam() {
   useEffect(() => {
     getTeams();
     getselectedteam();
-  },);
+  },[]);
   useEffect(() => {
     getfilter(m_id);
   }, [m_id, filteredData]);
