@@ -14,7 +14,7 @@ export default function Tournament(props) {
   const [tournament, settournament] = useState({name:"",url:""})
  const handleClick=(e)=>{
   e.preventDefault()
-  (tournament)
+  // (tournament)
   addTournament(tournament.name,tournament.url);
  }
  const onChange=(e)=>{

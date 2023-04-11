@@ -187,4 +187,49 @@ router.get('/getpoints/:matchId/:teamId', async (req, res) => {
   }
 });
 
+router.get("/playerdata/:matchId/:teamId", async (req, res) => {
+  const matchId = req.params.matchId;
+  const teamId = req.params.teamId;
+
+  try {
+    // Find the team document with the given matchId
+    const team = await FilteredTeamModel.findOne({ matchId: matchId });
+
+    if (team) {
+      // Find the team subdocument with the given teamId
+      const teamSubdoc = team.value.find(
+        (team) => team._id.toString() === teamId
+      );
+
+      if (teamSubdoc) {
+        const players = [
+          teamSubdoc.player_1,
+          teamSubdoc.player_2,
+          teamSubdoc.player_3,
+          teamSubdoc.player_4,
+          teamSubdoc.player_5
+        ];
+
+        const playerInfo = players.map((player) => {
+          return {
+            id: player._id,
+            kills: player.kills,
+            status: player.status || false
+          };
+        });
+
+        res.send({ status: "success", playerInfo });
+      } else {
+        res.status(404).send("Team not found");
+      }
+    } else {
+      res.status(404).send("Match not found");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal server error");
+  }
+});
+
+
 module.exports = router;
