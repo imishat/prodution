@@ -65,18 +65,16 @@ export default function Addteam() {
   }, [SelectedTeam]);
 
   useEffect(() => {
-    localStorage.setItem(`${m_id}-filteredData`, JSON.stringify(filteredData));
+    // localStorage.setItem(`${m_id}-filteredData`, JSON.stringify(filteredData));
     addFilterteam(m_id, filteredData);
   }, [filteredData]);
 
-  const handleSubmit = async () => {
-    // (filteredData,"value")
-  };
+  
 
   return (
     <>
       {/* <Display /> */}
-      <AddTeamB m_id={m_id} handleSubmit={handleSubmit} />
+      <AddTeamB m_id={m_id}  />
 
       <div style={{ marginLeft: "57px", marginTop: "75px" }}>
         <div className="d-flex flex-wrap">

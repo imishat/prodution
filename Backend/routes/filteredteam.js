@@ -46,64 +46,38 @@ router.get("/selectedteamfetch", async (req, res) => {
 
 
 router.post("/updatekill", async (req, res) => {
-  const matchId = req.body.matchId;
-  const teamId = req.body.teamId;
-  const playerId = req.body.playerId;
-  const kills = req.body.kills;
-  const status = req.body.status;
-  
+  const { matchId, teamId, playerId, kills, status } = req.body;
 
   try {
-    // Find the team document with the given matchId
-    const team = await FilteredTeamModel.findOne({ matchId: matchId });
+    const doc = await FilteredTeamModel.findOne({
+      "matchId": matchId,
+      "value._id": teamId,
+    });
 
-    if (team) {
-      // Find the team subdocument with the given teamId
-      const teamIndex = team.value.findIndex(
-        (team) => team._id.toString() === teamId
+    if (doc) {
+      const team = doc.value.id(teamId);
+      const playerField = Object.keys(team.toObject()).find(
+        (field) => field.startsWith("player_") && team[field]._id.toString() === playerId
       );
 
-      if (teamIndex !== -1) {
-        const teamSubdoc = team.value[teamIndex];
-        console.log(teamSubdoc, "hw os");
-
-        // Find the player subdocument with the given playerId in the team subdocument
-        const player =
-          teamSubdoc.player_1._id === playerId
-            ? teamSubdoc.player_1
-            : teamSubdoc.player_2._id === playerId
-            ? teamSubdoc.player_2
-            : teamSubdoc.player_3._id === playerId
-            ? teamSubdoc.player_3
-            : teamSubdoc.player_4._id === playerId
-            ? teamSubdoc.player_4
-            : null;
-
-        // console.log(player, "additya");
-        if (player) {
-          // Update the kills field of the player subdocument
-          player.kills = kills;
-          player.status = status;
-
-          // Mark the team document as modified and save it
-          team.markModified("value");
-          const result = await team.save();
-
-          res.send(result);
-        } else {
-          res.status(404).send("Player not found");
-        }
+      if (playerField) {
+        team[playerField].kills = kills;
+        team[playerField].status = status;
+        await doc.save();
+        res.send(doc);
       } else {
-        res.status(404).send("Team not found");
+        res.status(404).send("Player not found");
       }
     } else {
-      res.status(404).send("Match not found");
+      res.status(404).send("Not found");
     }
   } catch (err) {
     console.error(err);
     res.status(500).send("Internal server error");
   }
 });
+
+
 router.post("/teaminfo", async (req, res) => {
   const matchId = req.body.matchId;
   const teamId = req.body.teamId;
@@ -130,7 +104,7 @@ router.post("/teaminfo", async (req, res) => {
           teamSubdoc.totalkills = totalkills;
           teamSubdoc.totalpoints = totalpoints;
           teamSubdoc.rankpoint = rankpoint;
-          console.log(teamSubdoc, "sw os");
+          // console.log(teamSubdoc, "sw os");
 
           //   // Mark the team document as modified and save it
           try{
@@ -140,7 +114,7 @@ router.post("/teaminfo", async (req, res) => {
             res.send(result);
           }
           catch(err){
-            console.log("error",err)
+            // console.log("error",err)
           }
 
         } else {

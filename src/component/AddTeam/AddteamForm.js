@@ -14,7 +14,6 @@ export default function AddteamForm() {
   }
   const handleClick = (e) => {
     e.preventDefault()
-    (addteams)
     addTeam(addteams.teamName, addteams.teamTag, addteams.teamLogo, addteams.player_1, addteams.player_1photo, addteams.player_2, addteams.player_2photo, addteams.player_3, addteams.player_3photo, addteams.player_4, addteams.player_4photo, addteams.player_5, addteams.player_5photo)
   }
 

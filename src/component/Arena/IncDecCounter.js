@@ -10,15 +10,7 @@ export default function IncDecCounter(props) {
   const context = useContext(TallyContext);
   const { updatePlayersKill } = context;
 
-  useEffect(() => {
-    if (Array.isArray(playerInfo)) {
-      const currentPlayer = playerInfo.find((player) => player.id === id);
-      if (currentPlayer) {
-        setCount(currentPlayer.kills);
-        console.log(count,"grtra")
-      }
-    }
-  }, []);
+ 
   
   
   

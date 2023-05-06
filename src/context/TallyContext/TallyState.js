@@ -89,6 +89,7 @@ const TallyState = (props) => {
   const addFilterteam = async (matchId, value) => {
     // ("this is it")
     // (value,"value")
+    // console.log(matchId, value,"now")
     const response = await fetch(`${port}/api/filteredteam/storefilterteam`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -124,22 +125,29 @@ const TallyState = (props) => {
       settotalkill((prevTeams) => [...prevTeams, { team, kill }]);
     }
   };
-  const updatePlayersKill = async (matchId, teamId ,playerId, kills,status) => {
-    // ("this is it")
-    // (value,"value")
-    console.log("received ss",matchId, teamId ,playerId, kills,status)
-    const response = await fetch(`${port}/api/filteredteam/updatekill`, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ matchId, teamId ,playerId, kills,status }), // body data type must match "Content-Type" header
-    });
+  const updatePlayersKill = async (matchId, teamId ,playerId, kills, status) => {
+    try {
+       console.log("received ss", matchId, teamId ,playerId, kills, status);
+      const response = await fetch(`${port}/api/filteredteam/updatekill`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ matchId, teamId ,playerId, kills, status }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+    } catch (err) {
+      console.error("Error updating players kill:", err.message);
+    }
   };
+  
   const   updatekillsandpoints = async (matchId, teamId,totalkills,totalpoints,rankpoint) => {
     // ("this is it")
     // (value,"value")
-    console.log("received",matchId, teamId,totalkills,totalpoints)
+    // console.log("received",matchId, teamId,totalkills,totalpoints)
     const response = await fetch(`${port}/api/filteredteam/teaminfo`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
