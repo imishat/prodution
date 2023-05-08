@@ -18,7 +18,7 @@ export default function IncDecCounter(props) {
     // console.log(props.playerInfo, "asd"); 
     // console.log("update players",matchid,teamid,id,count,status)
     // console.log(props.playerInfo,"avi")
-    updatePlayersKill(matchid, teamid, id, count, status);
+    // updatePlayersKill(matchid, teamid, id, count, status);
   }, [count, status]);
 
   function increment() {

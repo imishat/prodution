@@ -9,6 +9,7 @@ import { useState } from "react";
 import Display from "../Display/Display";
 
 export default function Addteam() {
+  
   const mid = useParams();
   const m_id = mid.id;
   const [filteredData, setFilteredData] = useState(() => {
@@ -79,6 +80,7 @@ export default function Addteam() {
       <div style={{ marginLeft: "57px", marginTop: "75px" }}>
         <div className="d-flex flex-wrap">
           {filteredData.map((teamData, index) => {
+            
             return (
               <div key={index} className="col-3">
                 <TallyIteam

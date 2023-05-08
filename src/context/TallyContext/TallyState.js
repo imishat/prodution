@@ -147,7 +147,7 @@ const TallyState = (props) => {
   const   updatekillsandpoints = async (matchId, teamId,totalkills,totalpoints,rankpoint) => {
     // ("this is it")
     // (value,"value")
-    // console.log("received",matchId, teamId,totalkills,totalpoints)
+     console.log("received",matchId, teamId,totalkills,totalpoints,rankpoint)
     const response = await fetch(`${port}/api/filteredteam/teaminfo`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {

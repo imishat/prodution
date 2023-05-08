@@ -1,9 +1,11 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext,useRef } from 'react';
 import axios from "axios";
 import TallyContext from '../../context/TallyContext/TallyContext';
 import IncDecCounter from './IncDecCounter';
 
 export default function TallyItem(props) {
+  const [stats, setStats] = useState({ totalKills: 0, totalPoints: 0 });
+  const isFirstRender = useRef(true);
   let pointTable = {
     '1': 10,
     '2': 6,
@@ -36,7 +38,6 @@ export default function TallyItem(props) {
   const [totalPoints, setTotalPoints] = useState(0);
   const [totalKills, setTotalKills] = useState(0);
   const [isAllDead, setAllDead] = useState(false);
-  const [initialDataLoaded, setInitialDataLoaded] = useState(false);
   const [player1Status, setPlayer1Status] = useState(JSON.parse(localStorage.getItem(`player1Status-${props.teamData._id}`)) || false);
   const [player2Status, setPlayer2Status] = useState(JSON.parse(localStorage.getItem(`player2Status-${props.teamData._id}`)) || false);
   const [player3Status, setPlayer3Status] = useState(JSON.parse(localStorage.getItem(`player3Status-${props.teamData._id}`)) || false);
@@ -48,24 +49,23 @@ export default function TallyItem(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      // Check if the initial data has been loaded
-      if (!initialDataLoaded) {
+      
         try {
           const response = await axios.get(`http://localhost:5000/api/filteredteam/getpoints/${props.m_id}/${props.teamData._id}`);
           setTotalKills(response.data.totalkills);
           setTotalPoints(response.data.totalpoints);
-          
-          console.log(response)
 
-          // Set initialDataLoaded to true after the data is fetched
-          setInitialDataLoaded(true);
+          console.log(response);
+          console.log('Total Kills:', response.data);
+  
+          
         } catch (error) {
           console.log(error);
         }
-      }
+      
     };
     fetchData();
-  }, [props.m_id, initialDataLoaded]);
+  }, [props.m_id]);
 
   useEffect(() => {
     localStorage.setItem(`player1Status-${props.teamData._id}`, JSON.stringify(player1Status));
@@ -83,10 +83,17 @@ export default function TallyItem(props) {
   }
 
   useEffect(() => {
-    updatekillsandpoints(props.m_id, props.teamData._id, totalKills, (totalPoints + totalKills), totalPoints)
-    console.log("bsdk", props.m_id, props.teamData._id, totalKills, (totalPoints + totalKills), totalPoints)
-    // console.log(playerData);
-  }, [ totalKills, totalPoints]);
+    if (isFirstRender.current) {
+      // Skip the effect during the initial render
+      isFirstRender.current = false;
+    } else {
+      // This will run only when the component is updated, not on the initial render
+      updatekillsandpoints(props.m_id, props.teamData._id, totalKills, (totalPoints + totalKills), totalPoints);
+      console.log("bsdk", props.m_id, props.teamData._id, totalKills, (totalPoints + totalKills), totalPoints);
+      console.log(stats.totalKills,"stat")
+      // console.log(playerData);
+    }
+  }, [totalKills, totalPoints]);
 
   function handleChange(e) {
     setTotalPoints(pointTable[e.target.value])

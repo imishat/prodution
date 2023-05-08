@@ -143,7 +143,7 @@ router.get('/getpoints/:matchId/:teamId', async (req, res) => {
       return res.status(404).json({ message: 'Match not found' });
     }
 
-    const team = match.value.find((team) => team._id === req.params.teamId);
+    const team = match.value.find((team) => team._id.toString() === req.params.teamId);
     if (!team) {
       return res.status(404).json({ message: 'Team not found' });
     }
