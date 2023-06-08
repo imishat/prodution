@@ -1,37 +1,33 @@
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import Header from "./component/Header";
-import Tounamentforms from "./component/tounamentforms";
 import TournamentList from "./component/TournamentList";
-import TournamentState from "./context/TournamentState";
 import GroupstageState from "./context/GroupstageContext/GroupstateState";
+import TournamentState from "./context/TournamentState";
 
-import { useState, useEffect } from "react";
 import {
   Route,
-  Switch,
   BrowserRouter as Router,
-  Routes,
+  Routes
 } from "react-router-dom";
-import Groupstage from "./component/GroupStage/Groupstage";
 import Addteam from "./component/AddTeam/Addteam";
-import AddteamState from "./context/AddteamContext/AddteamState";
-import AddMatch from "./component/matches/AddMatch";
-import MatchState from "./context/Matchcontext/MatchState";
-import Logout from "./component/Logout";
-import Wwcd from "./component/Display/Wwcd";
-import Topfragger from "./component/Display/Topfragger";
-import Mvp from "./component/Display/Mvp";
-import Display from "./component/Display/Display";
-import Schedule from "./component/Display/Schedule";
-import Next from "./component/Display/Next";
 import Arena from "./component/Arena/Arena";
-import TallyState from "./context/TallyContext/TallyState";
-import OverallFragger from "./component/Display/OverallFragger";
-import OverallMvp from "./component/Display/OverallMvp";
+import Display from "./component/Display/Display";
+import H2h from "./component/Display/H2H/container/main/h2h";
 import Matchstanding from "./component/Display/Matchstanding";
+import Mvp from "./component/Display/Mvp";
+import Next from "./component/Display/Next";
+import OverallFragger from "./component/Display/OverallFragger";
 import OverallStanding from "./component/Display/OverallStanding";
-import H2h from "./component/Display/H2H/container/main/H2h";
+import Schedule from "./component/Display/Schedule";
+import Topfragger from "./component/Display/Topfragger";
+import Wwcd from "./component/Display/Wwcd";
+import Groupstage from "./component/GroupStage/Groupstage";
+import Logout from "./component/Logout";
+import AddMatch from "./component/matches/AddMatch";
+import AddteamState from "./context/AddteamContext/AddteamState";
+import MatchState from "./context/Matchcontext/MatchState";
+import TallyState from "./context/TallyContext/TallyState";
 
 function App() {
 
