@@ -1,19 +1,17 @@
-import React from 'react'
-import Controls from '../Controls'
-import AddIcon from '@mui/icons-material/Add';
+import React, { useContext, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import GroupstageContext from '../../context/GroupstageContext/GroupstageContext';
 import GroupstageButton from './GroupstageButton';
 import { GroupstageItem } from './GroupstageItem';
-import GroupstageContext from '../../context/GroupstageContext/GroupstageContext';
-import { useContext,useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 export default function Groupstage(props) {
   const tid = useParams()
   const t_id = tid.id
   const context = useContext(GroupstageContext)
     const{Groups,getGroup} = context
+    console.log(t_id);
     useEffect(() => {
       getGroup(t_id)
-    }, [])
+    }, [t_id])
     let divstyle = {
         padding: '10px',
         position: "absolute",

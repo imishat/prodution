@@ -1,34 +1,66 @@
-import React from "react";
-import { useState, useContext, useEffect } from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { v4 as uuidv4 } from "uuid";
 import AddteamContext from "../../context/AddteamContext/AddteamContext";
 
-
 export default function AddteamForm() {
+  const context = useContext(AddteamContext);
+  const { addTeam } = context;
+  // const [addteams, setaddteams] = useState("")
 
+  // react hook form
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-  const context = useContext(AddteamContext)
-  const { addTeam } = context
-  const [addteams, setaddteams] = useState("")
-  const onChange = (e) => {
-    setaddteams({ ...addteams, [e.target.name]: e.target.value })
-  }
-  const handleClick = (e) => {
-    e.preventDefault()
-    addTeam(addteams.teamName, addteams.teamTag, addteams.teamLogo, addteams.player_1, addteams.player_1photo, addteams.player_2, addteams.player_2photo, addteams.player_3, addteams.player_3photo, addteams.player_4, addteams.player_4photo, addteams.player_5, addteams.player_5photo)
-  }
+  // loading on create team
+  const [teamCreating, setTeamCreating] = useState(false);
 
+  // create team
+  const handleCreateTeam = (data) => {
+    setTeamCreating(true);
+    const teamData = {
+      teamName: data.teamName,
+      teamTag: data.teamTag,
+      id: uuidv4(),
+      teamLogo:data.teamLogo,
+      player_1:data.player_1,
+      player_1photo:data.player_1photo,
+      player_2:data.player_2,
+      player_2photo:data.player_2photo,
+      player_3:data.player_3,
+      player_3photo:data.player_3photo,
+      player_4:data.player_4,
+      player_4photo:data.player_4photo,
+      player_5:data.player_5,
+      player_5photo:data.player_5photo,
+    };
+    axios
+      .post(`http://localhost:5000/api/teams/createTeams`, teamData)
+      .then((res) => {
+        if (res.data) {
+          toast.success("Team Successfully Added");
+          reset();
+          setTeamCreating(false);
+        }
+      });
+  };
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit(handleCreateTeam)}>
         <div class="form-group ">
           <label for="exampleInputPassword1">Team Name</label>
           <input
+            {...register("teamName", { required: true })}
             type="text"
             class="form-control"
-            onChange={onChange}
             id="teamName"
-            name="teamName"
             placeholder="Team Name"
           />
         </div>
@@ -37,9 +69,8 @@ export default function AddteamForm() {
           <input
             type="text"
             class="form-control"
-            onChange={onChange}
             id="teamTag"
-            name="teamTag"
+            {...register("teamTag", { required: true })}
             placeholder="Team Tag"
           />
         </div>
@@ -48,9 +79,8 @@ export default function AddteamForm() {
           <input
             type="text"
             class="form-control"
-            onChange={onChange}
             id="teamLogo"
-            name="teamLogo"
+            {...register("teamLogo", { required: true })}
             placeholder="Team Logo Url"
           />
         </div>
@@ -59,9 +89,8 @@ export default function AddteamForm() {
           <input
             type="text"
             class="form-control"
-            onChange={onChange}
             id="player_1"
-            name="player_1"
+            {...register("player_1", { required: true })}
             placeholder="Player 1"
           />
         </div>
@@ -70,9 +99,8 @@ export default function AddteamForm() {
           <input
             type="text"
             class="form-control"
-            onChange={onChange}
             id="player_1photo"
-            name="player_1photo"
+            {...register("player_1photo", { required: true })}
             placeholder="Player_1 Photo Url"
           />
         </div>
@@ -81,9 +109,8 @@ export default function AddteamForm() {
           <input
             type="text"
             class="form-control"
-            onChange={onChange}
             id="player_2"
-            name="player_2"
+            {...register("player_2", { required: true })}
             placeholder="Player 2"
           />
         </div>
@@ -92,9 +119,8 @@ export default function AddteamForm() {
           <input
             type="text"
             class="form-control"
-            onChange={onChange}
             id="player_2photo"
-            name="player_2photo"
+            {...register("player_2photo", { required: true })}
             placeholder="Player_2 Photo Url"
           />
         </div>
@@ -103,9 +129,8 @@ export default function AddteamForm() {
           <input
             type="text"
             class="form-control"
-            onChange={onChange}
             id="player_3"
-            name="player_3"
+            {...register("player_3", { required: true })}
             placeholder="Player 3"
           />
         </div>
@@ -114,9 +139,8 @@ export default function AddteamForm() {
           <input
             type="text"
             class="form-control"
-            onChange={onChange}
             id="player_3photo"
-            name="player_3photo"
+            {...register("player_3photo", { required: true })}
             placeholder="Player 3  Photo Url"
           />
         </div>
@@ -125,9 +149,8 @@ export default function AddteamForm() {
           <input
             type="text"
             class="form-control"
-            onChange={onChange}
             id="player_4"
-            name="player_4"
+            {...register("player_4", { required: true })}
             placeholder="Player 4"
           />
         </div>
@@ -136,9 +159,8 @@ export default function AddteamForm() {
           <input
             type="text"
             class="form-control"
-            onChange={onChange}
             id="player_4photo"
-            name="player_4photo"
+            {...register("player_4photo", { required: true })}
             placeholder="Player 4 Photo Url"
           />
         </div>
@@ -147,9 +169,8 @@ export default function AddteamForm() {
           <input
             type="text"
             class="form-control"
-            onChange={onChange}
             id="player_5"
-            name="player_5"
+            {...register("player_5", { required: true })}
             placeholder="Player 5"
           />
         </div>
@@ -158,19 +179,14 @@ export default function AddteamForm() {
           <input
             type="text"
             class="form-control"
-            onChange={onChange}
             id="player_5photo"
-            name="player_5photo"
+            {...register("player_5photo", { required: true })}
             placeholder="Player 5 Photo Url"
           />
         </div>
 
-        <button
-          type="submit"
-          onClick={handleClick}
-          class="btn btn-primary mt-2"
-        >
-          Submit
+        <button type="submit" class="btn btn-primary mt-2">
+          {teamCreating ? "Creating..." : "Submit"}
         </button>
       </form>
     </div>

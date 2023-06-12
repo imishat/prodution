@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import TournamentContext from "./TournamentContext";
-import { useState } from "react";
 
 const TournamentState = (props) => {
   const port = "http://localhost:5000";
@@ -23,16 +22,18 @@ const TournamentState = (props) => {
 
   const addTournament = async (name, url) => {
     // ("this is it")
-
+ 
     const response = await fetch(`${port}/api/tournament`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, url }), // body data type must match "Content-Type" header
+      body: JSON.stringify({ name, url}), // body data type must match "Content-Type" header
     });
+    const json = await response.json();
+    console.log(json);
     const tournament = {
-      _id: "asdasd",
+      _id:   json.insertedId,
       name: name,
       url: url,
       __v: 0,
