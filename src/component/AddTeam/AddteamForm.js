@@ -2,41 +2,54 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { v4 as uuidv4 } from "uuid";
 import AddteamContext from "../../context/AddteamContext/AddteamContext";
 
-
 export default function AddteamForm() {
-
-
-  const context = useContext(AddteamContext)
-  const { addTeam } = context
+  const context = useContext(AddteamContext);
+  const { addTeam } = context;
   // const [addteams, setaddteams] = useState("")
 
   // react hook form
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-
-  
   // loading on create team
-  const [teamCreating,setTeamCreating] = useState(false)
+  const [teamCreating, setTeamCreating] = useState(false);
 
   // create team
   const handleCreateTeam = (data) => {
-    setTeamCreating(true)
-   const teamData = {
-    team:data,
-    date: new Date()
-   }
-   axios.post(`http://localhost:5000/createTeam`,teamData)
-   .then(res=>{
-    if(res.data){
-      toast.success('Team Successfully Added')
-      reset()
-      setTeamCreating(false)
-    }
-   })
-  }
-
+    setTeamCreating(true);
+    const teamData = {
+      teamName: data.teamName,
+      teamTag: data.teamTag,
+      id: uuidv4(),
+      teamLogo:data.teamLogo,
+      player_1:data.player_1,
+      player_1photo:data.player_1photo,
+      player_2:data.player_2,
+      player_2photo:data.player_2photo,
+      player_3:data.player_3,
+      player_3photo:data.player_3photo,
+      player_4:data.player_4,
+      player_4photo:data.player_4photo,
+      player_5:data.player_5,
+      player_5photo:data.player_5photo,
+    };
+    axios
+      .post(`http://localhost:5000/api/teams/createTeams`, teamData)
+      .then((res) => {
+        if (res.data) {
+          toast.success("Team Successfully Added");
+          reset();
+          setTeamCreating(false);
+        }
+      });
+  };
 
   return (
     <div>
@@ -44,7 +57,7 @@ export default function AddteamForm() {
         <div class="form-group ">
           <label for="exampleInputPassword1">Team Name</label>
           <input
-          {...register("teamName", { required: true })}
+            {...register("teamName", { required: true })}
             type="text"
             class="form-control"
             id="teamName"
@@ -172,11 +185,8 @@ export default function AddteamForm() {
           />
         </div>
 
-        <button
-          type="submit"
-          class="btn btn-primary mt-2"
-        >
-         {teamCreating ? 'Creating...':'Submit'} 
+        <button type="submit" class="btn btn-primary mt-2">
+          {teamCreating ? "Creating..." : "Submit"}
         </button>
       </form>
     </div>

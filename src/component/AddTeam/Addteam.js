@@ -1,7 +1,6 @@
-import { padding } from '@mui/system'
-import React, { useContext,useEffect } from 'react'
-import AddteamButton from './AddteamButton';
+import React, { useContext, useEffect } from 'react';
 import AddteamContext from '../../context/AddteamContext/AddteamContext';
+import AddteamButton from './AddteamButton';
 
 import AddteamItem from './AddteamItem';
 
@@ -18,9 +17,8 @@ export default function Addteam() {
     <AddteamButton/>
     <div style={{marginLeft:"80px",marginTop:"20px"}}>
     {Addteam.length===0? "NO TEAMS":
-    Addteam.map((tn)=>{
-      return <AddteamItem Addteams={tn} />
-    })
+    Addteam.map((tn)=> <AddteamItem key={tn._id} Addteams={tn} />
+    )
 }
     </div>
    

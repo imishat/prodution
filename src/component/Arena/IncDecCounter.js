@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import TallyContext from "../../context/TallyContext/TallyContext";
 
 export default function IncDecCounter(props) {
@@ -12,7 +10,7 @@ export default function IncDecCounter(props) {
 
  
   
-  
+  console.log(id,count);
   
   useEffect(() => {
     // console.log(props.playerInfo, "asd"); 

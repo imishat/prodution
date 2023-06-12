@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import MatchContext from "./MatchContext";
-import { useState } from "react";
-
 const MatchState = (props) => {
   const port = "http://localhost:5000";
 const intialmatch =[ ]
@@ -19,6 +18,8 @@ const intialmatch =[ ]
     setMatch(json)
     
   };
+
+  const id =  uuidv4() 
   const addMatch = async ( group_id,match_no,time,map) => {
     // ("this is it")
 
@@ -27,11 +28,11 @@ const intialmatch =[ ]
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ group_id,match_no,time,map}), // body data type must match "Content-Type" header
+      body: JSON.stringify({id,group_id,match_no,time,map}), // body data type must match "Content-Type" header
     });
     const json = await response.json();
     const match = {
-      _id: json._id,
+      id: id,
       group_id: group_id,
       matchno: match_no,
       time: time,

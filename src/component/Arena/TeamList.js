@@ -1,7 +1,5 @@
-import React from 'react'
-import { useState } from 'react'
+import React from 'react';
 export default function TeamList(props) {
-  
   return (
     <div class="form-check">
     <input class="form-check-input" onChange={props.onChange}  type="checkbox" value={props.Addteam.teamName} id="flexCheckDefault"/>

@@ -1,6 +1,6 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import AddteamContext from "./AddteamContext";
-import { useState } from "react";
 
 const AddteamState =(props)=>{
   const port = "http://localhost:5000";
@@ -12,15 +12,10 @@ const AddteamState =(props)=>{
       const getTeams = async () => {
         // ("this is it")
     
-        const response = await fetch(`${port}/api/teams/fetchallteams`, {
-          method: "GET", // *GET, POST, PUT, DELETE, etc.
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const json = await response.json();
-        setAddteam(json)
-        
+       axios.get(`${port}/api/teams/fetchallteams`)
+       .then(res=>{
+        setAddteam(res.data)
+       })
       };
       //Add team 
       const addTeam = async (teamName,teamTag,teamLogo,player_1,player_1photo,player_2,player_2photo,player_3,player_3photo,player_4,player_4photo,player_5,player_5photo ) => {

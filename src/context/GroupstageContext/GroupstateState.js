@@ -1,28 +1,26 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import GroupstageContext from "./GroupstageContext";
-import { useState } from "react";
 
 
 const GroupstageState =(props)=>{
     const port = "http://localhost:5000";
     const intialgroup=[]
     const [Groups, setGroups] = useState(intialgroup)
+    const [getId,setGetID] = useState('')
     const getGroup = async (id) => {
-        // // console.log("this is it")
-    
-        const response = await fetch(`${port}/api/groupstage/fetchallgroups/${id}`, {
-          method: "GET", // *GET, POST, PUT, DELETE, etc.
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const json = await response.json();
-        setGroups(json)
-        // console.log("group",Groups)
+      setGetID(id)
         
       };
+
+      useEffect(()=>{
+        axios.get(`${port}/api/groupstage/fetchallgroups/${getId}`)
+        .then(res=>{
+          setGroups(res.data)
+        })
+      },[getId,Groups])
     const addGroup = async (tournament_id,title, total_matches) => {
-        // // console.log("this is it")
+        console.log(tournament_id)
     
         const response = await fetch(`${port}/api/groupstage/creategroupstage`, {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -32,9 +30,9 @@ const GroupstageState =(props)=>{
           body: JSON.stringify({tournament_id,  title, total_matches }), // body data type must match "Content-Type" header
         });
         const json = await response.json();
-        // console.log(json)
+        console.log(json)
         const group = {
-          _id: json._id,
+          id: json.insertedId,
           tournament_id:tournament_id,
           title: title,
             total_matches: total_matches,

@@ -1,21 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AddteamContext from "../../context/AddteamContext/AddteamContext";
 import TallyContext from "../../context/TallyContext/TallyContext";
 import AddTeamB from "./AddTeamB";
-import SelectTeam from "./SelectTeam";
 import TallyIteam from "./TallyIteam";
-import { useState } from "react";
-import Display from "../Display/Display";
 
 export default function Addteam() {
   
   const mid = useParams();
   const m_id = mid.id;
-  const [filteredData, setFilteredData] = useState(() => {
-    const data = localStorage.getItem(`${m_id}-filteredData`);
-    return data ? JSON.parse(data) : [];
-  });
+  const [filteredData, setFilteredData] = useState([]);
 
   const context = useContext(AddteamContext);
   const { Addteam, getTeams } = context;
@@ -53,6 +47,7 @@ export default function Addteam() {
     const filteredAddteam = Addteam.filter((team) => {
       return selectedTeamArray.includes(team.teamName);
     });
+    console.log(selectedMatch);
 
     // Update the filter and set the alive state based on the selected teams
     if (filteredAddteam.length > 0) {

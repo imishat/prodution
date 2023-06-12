@@ -1,10 +1,8 @@
-import React from 'react'
-import Controls from '../Controls'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import GroupstageContext from '../../context/GroupstageContext/GroupstageContext';
-import { useContext } from 'react';
 
 export const GroupstageItem=(props)=> {
     const context = useContext(GroupstageContext)
